@@ -1,28 +1,21 @@
 import { useState, useMemo } from "react"
 import { MailIcon, PhoneIcon } from "lucide-react"
 
-import {
-  Field,
-  FieldDescription,
-  FieldLabel,
-  FieldSet,
-} from "@/components/ui/field"
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupInput,
-} from "@/components/ui/input-group"
+import { FieldSet } from "@/components/ui/field"
 import { Button } from "@/components/ui/button"
 
 import UniformFieldGroup from "@/components/custom/uniform-field-group"
+import StyledField from "@/components/custom/styled-field"
 import { isValidEmail, isValidPhone, formatPhoneNumber } from "@/util/validation"
 
 interface ContactInfoInputProps {
-  onSubmit?: (data: { email: string; phone: string }) => void
+  onSubmit?: (data: { firstName: string; lastName: string; email: string; phone: string }) => void
   className?: string
 }
 
 const ContactInfoInput = ({ onSubmit, className }: ContactInfoInputProps) => {
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
   const [emailError, setEmailError] = useState("")
@@ -74,9 +67,16 @@ const ContactInfoInput = ({ onSubmit, className }: ContactInfoInputProps) => {
     }
 
     // Submit the form
-    onSubmit?.({ email: email.trim(), phone: phone.trim() })
+    onSubmit?.({
+      firstName: firstName.trim(),
+      lastName: lastName.trim(),
+      email: email.trim(),
+      phone: phone.trim()
+    })
 
     // Optionally clear the form after successful submission
+    setFirstName("")
+    setLastName("")
     setEmail("")
     setPhone("")
   }
@@ -85,51 +85,45 @@ const ContactInfoInput = ({ onSubmit, className }: ContactInfoInputProps) => {
     <form onSubmit={handleSubmit} className={className}>
       <FieldSet className="items-center">
         <UniformFieldGroup>
-          <Field>
-            <FieldLabel htmlFor="email"></FieldLabel>
-            <InputGroup className="bg-muted/30 rounded-md">
-              <InputGroupInput
-                id="email"
-                type="email"
-                placeholder="you@example.com"
-                value={email}
-                onChange={handleEmailChange}
-                className={emailError ? "border-destructive" : ""}
-              />
-              <InputGroupAddon>
-                <MailIcon />
-              </InputGroupAddon>
-            </InputGroup>
-            {emailError && (
-              <FieldDescription className="text-destructive">
-                {emailError}
-              </FieldDescription>
-            )}
-          </Field>
+          <div className="grid grid-cols-2 gap-4">
+            <StyledField
+              id="firstName"
+              type="text"
+              placeholder="First name"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
 
-          <Field>
-            <FieldLabel htmlFor="phone"></FieldLabel>
-            <InputGroup className="bg-muted/30 rounded-md">
-              <InputGroupInput
-                id="phone"
-                type="tel"
-                placeholder="(555) 123-4567"
-                value={phone}
-                onChange={handlePhoneChange}
-                className={phoneError ? "border-destructive" : ""}
-              />
-              <InputGroupAddon>
-                <PhoneIcon />
-              </InputGroupAddon>
-            </InputGroup>
-            {phoneError && (
-              <FieldDescription className="text-destructive">
-                {phoneError}
-              </FieldDescription>
-            )}
-          </Field>
+            <StyledField
+              id="lastName"
+              type="text"
+              placeholder="Last name"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+            />
+          </div>
 
-          <Button type="submit" disabled={!isFormValid} className="mt-4 w-full">
+          <StyledField
+            id="email"
+            type="email"
+            placeholder="you@example.com"
+            value={email}
+            onChange={handleEmailChange}
+            error={emailError}
+            icon={<MailIcon />}
+          />
+
+          <StyledField
+            id="phone"
+            type="tel"
+            placeholder="(555) 123-4567"
+            value={phone}
+            onChange={handlePhoneChange}
+            error={phoneError}
+            icon={<PhoneIcon />}
+          />
+
+          <Button type="submit" disabled={!isFormValid} className="w-4/5 place-self-center">
             Submit
           </Button>
         </UniformFieldGroup>

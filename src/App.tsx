@@ -28,7 +28,7 @@ function App() {
         </header>
 
         {/* TODO nail down styling better. */}
-        <Empty className={cn("bg-muted/15")}>
+        <Empty className={cn("bg-muted/5")}>
           <EmptyHeader>
             <EmptyMedia variant="default">
               <Avatar className="size-16">

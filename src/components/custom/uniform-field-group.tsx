@@ -9,13 +9,13 @@ interface UniformFieldGroupProps {
 /**
  * UniformFieldGroup
  *
- * A wrapper around ShadCN's FieldGroup that ensures all child Field components
- * have the same width, based on the widest element within any field.
+ * A wrapper around ShadCN's FieldGroup that ensures all child components
+ * have uniform width determined by the parent container.
  *
  * Design Principle:
- * When fields are stacked vertically in a form, they should align to a uniform
- * width determined by the widest content. This creates visual consistency and
- * prevents layout shifts or overflow issues.
+ * - All direct children take the full width of the container
+ * - Horizontal items within rows are evenly spaced using CSS Grid
+ * - Width is determined by the parent container, not content
  *
  * Usage:
  * ```tsx
@@ -24,28 +24,30 @@ interface UniformFieldGroupProps {
  *     <FieldLabel>Email</FieldLabel>
  *     <Input type="email" />
  *   </Field>
- *   <Field>
- *     <FieldLabel>Phone</FieldLabel>
- *     <InputOTP maxLength={10}>...</InputOTP>
- *   </Field>
+ *   <div className="grid grid-cols-2 gap-4">
+ *     <Field>First Name Field</Field>
+ *     <Field>Last Name Field</Field>
+ *   </div>
  * </UniformFieldGroup>
  * ```
  *
- * The component uses CSS Grid's `minmax(0, 1fr)` to ensure all fields
- * stretch to match the widest field's intrinsic width.
+ * The component uses CSS Grid's `minmax(0, 1fr)` to ensure all children
+ * fit within the parent container and distribute space evenly.
  */
 const UniformFieldGroup = ({ children, className }: UniformFieldGroupProps) => {
   return (
     <FieldGroup
       className={cn(
-        // Use grid with auto-fit to make all children the same width
+        // Use grid for vertical stacking
         "grid",
-        // All fields should be the same width, determined by content
+        // All direct children take full width of the column
+        "[&>*]:w-full",
+        // All fields should be full width
         "[&>[data-slot=field]]:w-full",
         // Force InputGroup to take full width of its Field parent
         "[&_[data-slot=input-group]]:w-full",
-        // Ensure the grid items size to the largest intrinsic content
-        "grid-cols-[minmax(max-content,1fr)]",
+        // Column fits within parent container, allows shrinking below content size
+        "grid-cols-[minmax(0,1fr)]",
         className
       )}
     >
