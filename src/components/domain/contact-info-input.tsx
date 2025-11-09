@@ -12,10 +12,11 @@ import { useCreateSubscriber } from "@/hook/useCreateSubscriber"
 
 interface ContactInfoInputProps {
   onSubmit?: (data: { firstName: string; lastName: string; email: string; phone: string }) => void
+  onSuccess?: () => void
   className?: string
 }
 
-const ContactInfoInput = ({ onSubmit, className }: ContactInfoInputProps) => {
+const ContactInfoInput = ({ onSubmit, onSuccess, className }: ContactInfoInputProps) => {
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
@@ -78,7 +79,7 @@ const ContactInfoInput = ({ onSubmit, className }: ContactInfoInputProps) => {
 
     if (result) {
       toast.success("Success!", {
-        description: "Your information has been submitted successfully.",
+        description: "Thanks for subscribing. We'll be in touch!",
       })
 
       onSubmit?.({
@@ -87,6 +88,8 @@ const ContactInfoInput = ({ onSubmit, className }: ContactInfoInputProps) => {
         email: email.trim(),
         phone: phone.trim()
       })
+
+      onSuccess?.()
 
       setFirstName("")
       setLastName("")

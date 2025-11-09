@@ -10,12 +10,18 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Toaster } from "@/components/ui/sonner";
 import ContactInfoInput from "@/components/domain/contact-info-input";
+import SubscriberList from "@/components/domain/SubscriberList";
 import { cn } from "./lib/utils";
 
 function App() {
+  let refetchSubscribers: (() => Promise<void>) | null = null
+
   const handleContactSubmit = (data: { email: string; phone: string }) => {
     console.log("Contact info submitted:", data);
-    // TODO: Send to backend/email service
+  };
+
+  const handleSubscriptionSuccess = () => {
+    refetchSubscribers?.()
   };
 
   return (
@@ -54,10 +60,19 @@ function App() {
             </p>
             <ContactInfoInput
               onSubmit={handleContactSubmit}
+              onSuccess={handleSubscriptionSuccess}
               className="w-full"
             />
           </EmptyContent>
         </Empty>
+
+        <div className="mt-8">
+          <SubscriberList
+            onRefetchRequest={(refetch) => {
+              refetchSubscribers = refetch
+            }}
+          />
+        </div>
       </div>
     </div>
     </>
