@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react"
 import { MailIcon, PhoneIcon } from "lucide-react"
+import { toast } from "sonner"
 
 import { FieldSet } from "@/components/ui/field"
 import { Button } from "@/components/ui/button"
@@ -7,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import UniformFieldGroup from "@/components/custom/uniform-field-group"
 import StyledField from "@/components/custom/styled-field"
 import { isValidEmail, isValidPhone, formatPhoneNumber } from "@/util/validation"
+import { useCreateSubscriber } from "@/hook/useCreateSubscriber"
 
 interface ContactInfoInputProps {
   onSubmit?: (data: { firstName: string; lastName: string; email: string; phone: string }) => void
@@ -20,6 +22,8 @@ const ContactInfoInput = ({ onSubmit, className }: ContactInfoInputProps) => {
   const [phone, setPhone] = useState("")
   const [emailError, setEmailError] = useState("")
   const [phoneError, setPhoneError] = useState("")
+
+  const { createSubscriber, isLoading, error: submitError } = useCreateSubscriber()
 
   // Determine if the form is valid and submit button should be enabled
   const isFormValid = useMemo(() => {
@@ -54,10 +58,9 @@ const ContactInfoInput = ({ onSubmit, className }: ContactInfoInputProps) => {
     if (phoneError) setPhoneError("")
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    // This shouldn't happen due to button being disabled, but defensive check
     if (!isFormValid) {
       if (!email.trim() && !phone.trim()) {
         setEmailError("Please provide either an email or phone number")
@@ -66,19 +69,30 @@ const ContactInfoInput = ({ onSubmit, className }: ContactInfoInputProps) => {
       return
     }
 
-    // Submit the form
-    onSubmit?.({
-      firstName: firstName.trim(),
-      lastName: lastName.trim(),
-      email: email.trim(),
-      phone: phone.trim()
+    const result = await createSubscriber({
+      first_name: firstName.trim(),
+      last_name: lastName.trim(),
+      email: email.trim() || undefined,
+      phone: phone.trim() || undefined,
     })
 
-    // Optionally clear the form after successful submission
-    setFirstName("")
-    setLastName("")
-    setEmail("")
-    setPhone("")
+    if (result) {
+      toast.success("Success!", {
+        description: "Your information has been submitted successfully.",
+      })
+
+      onSubmit?.({
+        firstName: firstName.trim(),
+        lastName: lastName.trim(),
+        email: email.trim(),
+        phone: phone.trim()
+      })
+
+      setFirstName("")
+      setLastName("")
+      setEmail("")
+      setPhone("")
+    }
   }
 
   return (
@@ -123,9 +137,13 @@ const ContactInfoInput = ({ onSubmit, className }: ContactInfoInputProps) => {
             icon={<PhoneIcon />}
           />
 
-          <Button type="submit" disabled={!isFormValid} className="w-4/5 place-self-center">
-            Submit
+          <Button type="submit" disabled={!isFormValid || isLoading} className="w-4/5 place-self-center">
+            {isLoading ? "Submitting..." : "Submit"}
           </Button>
+
+          {submitError && (
+            <p className="text-sm text-red-500 text-center">{submitError}</p>
+          )}
         </UniformFieldGroup>
       </FieldSet>
     </form>

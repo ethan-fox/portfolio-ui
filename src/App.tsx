@@ -8,6 +8,7 @@ import {
   EmptyTitle,
 } from "@/components/ui/empty";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Toaster } from "@/components/ui/sonner";
 import ContactInfoInput from "@/components/domain/contact-info-input";
 import { cn } from "./lib/utils";
 
@@ -18,8 +19,10 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-background p-8">
-      <div className="max-w-2xl mx-auto">
+    <>
+      <Toaster position="bottom-right" />
+      <div className="min-h-screen bg-background p-8">
+        <div className="max-w-2xl mx-auto">
         <header className="mb-12 text-center">
           <h1 className="text-5xl font-bold mb-4 text-foreground">Welcome!</h1>
           <p className="text-xl text-muted-foreground">
@@ -57,6 +60,7 @@ function App() {
         </Empty>
       </div>
     </div>
+    </>
   );
 }
 

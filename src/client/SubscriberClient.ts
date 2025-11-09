@@ -2,7 +2,7 @@ import axios, { type AxiosInstance } from 'axios'
 import type { ContactRequest } from '@/model/api/contact'
 import type { ContactView } from '@/model/view/contact'
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://portfolio-api-3rri4wydga-uc.a.run.app'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 class SubscriberClient {
   private client: AxiosInstance
