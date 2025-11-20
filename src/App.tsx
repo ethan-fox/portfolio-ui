@@ -4,7 +4,7 @@ import { Toaster } from "@/components/ui/sonner";
 import HomePage from "@/components/domain/page/HomePage";
 import PrivacyPage from "@/components/domain/page/PrivacyPage";
 import HomeBanner from "@/components/domain/HomeBanner";
-import NavigationMenu from "@/components/domain/NavigationMenu/NavigationMenu";
+import NavigationTray from "@/components/domain/NavigationTray/NavigationTray";
 
 function App() {
   const navItems = [
@@ -20,7 +20,7 @@ function App() {
       <Toaster position="bottom-right" />
       <div className="min-h-screen bg-background">
         <HomeBanner />
-        <NavigationMenu items={navItems} />
+        <NavigationTray items={navItems} />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/privacy" element={<PrivacyPage />} />

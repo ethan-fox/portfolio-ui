@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import {
-  NavigationMenu as NavMenu,
+  NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
@@ -19,8 +19,8 @@ interface DesktopNavigationProps {
 
 const DesktopNavigation = ({ items }: DesktopNavigationProps) => {
   return (
-    <NavMenu>
-      <NavigationMenuList className="gap-[clamp(1px,_2vw,_2rem)]">
+    <NavigationMenu>
+      <NavigationMenuList className="gap-[clamp(1px,2vw,2rem)]">
         {items.map((item) => (
           <NavigationMenuItem key={item.href}>
             <NavigationMenuLink asChild>
@@ -31,7 +31,7 @@ const DesktopNavigation = ({ items }: DesktopNavigationProps) => {
           </NavigationMenuItem>
         ))}
       </NavigationMenuList>
-    </NavMenu>
+    </NavigationMenu>
   );
 };
 
