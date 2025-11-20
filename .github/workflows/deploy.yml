@@ -29,6 +29,7 @@ jobs:
       - name: Create production environment file
         run: |
           echo "VITE_API_BASE_URL=${{ secrets.VITE_API_BASE_URL }}" > .env.production
+          echo "VITE_GOOGLE_CLIENT_ID=${{ secrets.VITE_GOOGLE_CLIENT_ID }}" >> .env.production
 
       - name: Build application
         run: npm run build

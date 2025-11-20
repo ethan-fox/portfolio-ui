@@ -14,6 +14,26 @@ class SubscriberClient {
         'Content-Type': 'application/json',
       },
     })
+
+    this.client.interceptors.request.use((config) => {
+      const googleToken = localStorage.getItem('googleToken');
+      if (googleToken) {
+        config.headers.Authorization = `Bearer ${googleToken}`;
+      }
+      return config;
+    });
+
+    this.client.interceptors.response.use(
+      (response) => response,
+      (error) => {
+        if (error.response?.status === 401) {
+          localStorage.removeItem('googleToken');
+          localStorage.removeItem('user');
+          window.location.href = '/';
+        }
+        return Promise.reject(error);
+      }
+    );
   }
 
   async getAll(): Promise<ContactView[]> {
