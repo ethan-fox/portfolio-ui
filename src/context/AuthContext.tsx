@@ -73,10 +73,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setUser(null);
     localStorage.removeItem('user');
     localStorage.removeItem('googleToken');
-
-    if (typeof google !== 'undefined') {
-      google.accounts.id.disableAutoSelect();
-    }
   };
 
   const getGoogleToken = (): string | null => {

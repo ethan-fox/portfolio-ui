@@ -1,39 +1,13 @@
-import axios, { type AxiosInstance } from 'axios'
-import type { ContactRequest } from '@/model/api/contact'
-import type { ContactView } from '@/model/view/contact'
-
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+import type { AxiosInstance } from 'axios';
+import { portfolioBackend } from './PortfolioBackend';
+import type { ContactRequest } from '@/model/api/contact';
+import type { ContactView } from '@/model/view/contact';
 
 class SubscriberClient {
-  private client: AxiosInstance
+  private client: AxiosInstance;
 
-  constructor(baseUrl: string = API_BASE_URL) {
-    this.client = axios.create({
-      baseURL: baseUrl,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-
-    this.client.interceptors.request.use((config) => {
-      const googleToken = localStorage.getItem('googleToken');
-      if (googleToken) {
-        config.headers.Authorization = `Bearer ${googleToken}`;
-      }
-      return config;
-    });
-
-    this.client.interceptors.response.use(
-      (response) => response,
-      (error) => {
-        if (error.response?.status === 401) {
-          localStorage.removeItem('googleToken');
-          localStorage.removeItem('user');
-          window.location.href = '/';
-        }
-        return Promise.reject(error);
-      }
-    );
+  constructor(client: AxiosInstance = portfolioBackend) {
+    this.client = client;
   }
 
   async getAll(): Promise<ContactView[]> {

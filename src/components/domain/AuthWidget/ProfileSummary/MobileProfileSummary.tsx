@@ -3,14 +3,14 @@ import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { LogOut, Loader2 } from 'lucide-react';
 
-interface ProfileSummaryProps {
+interface MobileProfileSummaryProps {
   displayName: string | null;
   photoURL: string | null;
   onSignOut: () => Promise<void>;
   className?: string;
 }
 
-const ProfileSummary = ({ displayName, photoURL, onSignOut, className }: ProfileSummaryProps) => {
+const MobileProfileSummary = ({ displayName, photoURL, onSignOut, className }: MobileProfileSummaryProps) => {
   const [loading, setLoading] = useState(false);
 
   const handleSignOut = async () => {
@@ -26,7 +26,7 @@ const ProfileSummary = ({ displayName, photoURL, onSignOut, className }: Profile
     <div className={`flex items-center gap-3 ${className}`}>
       <Avatar className="h-10 w-10">
         <AvatarImage src={photoURL || undefined} alt={displayName || 'User'} />
-        <AvatarFallback>{displayName?.charAt(0) || 'U'}</AvatarFallback>
+        <AvatarFallback>{displayName?.charAt(0) || '?'}</AvatarFallback>
       </Avatar>
 
       <div className="flex flex-col gap-1">
@@ -50,4 +50,4 @@ const ProfileSummary = ({ displayName, photoURL, onSignOut, className }: Profile
   );
 };
 
-export default ProfileSummary;
+export default MobileProfileSummary;
