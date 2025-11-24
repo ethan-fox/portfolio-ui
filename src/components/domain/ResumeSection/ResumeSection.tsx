@@ -1,7 +1,14 @@
 import Markdown from "react-markdown";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import type { ResumeSectionProps } from "@/model/component/ResumeSection";
+import type { SectionStyleConfig } from "@/model/component/ResumeSection";
 import { cn } from "@/lib/utils";
+
+export interface ResumeSectionProps {
+  title: string;
+  content: string;
+  styleConfig?: SectionStyleConfig;
+}
+
 
 const ResumeSection = ({ title, content, styleConfig }: ResumeSectionProps) => {
   const customRenderer = styleConfig?.customRenderer;

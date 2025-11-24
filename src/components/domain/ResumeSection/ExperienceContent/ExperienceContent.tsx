@@ -1,10 +1,12 @@
 import { useRef } from 'react';
 import { Accordion } from '@/components/ui/accordion';
-import { parseByPattern } from '@/util/sectionParser';
+import { parseByPattern } from '@/util/resumeSectionParser';
+import { PlatformVariant } from '@/model/PlatformVariant';
 import ExperienceAccordionItem from '@/components/domain/ResumeSection/ExperienceContent/ExperienceAccordionItem/ExperienceAccordionItem';
 
 interface ExperienceContentProps {
   content: string;
+  platformVariant?: PlatformVariant;
 }
 
 const ExperienceContent = ({ content }: ExperienceContentProps) => {
@@ -21,7 +23,10 @@ const ExperienceContent = ({ content }: ExperienceContentProps) => {
 
       if (itemElement) {
         setTimeout(() => {
-          itemElement.scrollIntoView({ behavior: 'smooth', block: 'end' });
+          itemElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'end'
+          });
         }, 300);
       }
     }

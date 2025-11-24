@@ -9,7 +9,7 @@ const AboutMeText = ({ content }: AboutMeTextProps) => {
     <Markdown
       components={{
         p: ({ children }) => (
-          <p className="text-lg leading-relaxed text-foreground mb-4">{children}</p>
+          <p className="text-lg text-center md:text-left leading-relaxed text-foreground mb-4">{children}</p>
         ),
         strong: ({ children }) => (
           <strong className="font-semibold text-foreground">{children}</strong>

@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import ExperienceItem from '@/components/domain/ResumeSection/ExperienceContent/ExperienceItem/ExperienceItem';
+import ExperienceItem from '@/components/domain/ResumeSection/ExperienceContent/ExperienceAccordionItem/ExperienceItem/ExperienceItem';
 
 interface ExperienceAccordionItemProps {
   title: string;

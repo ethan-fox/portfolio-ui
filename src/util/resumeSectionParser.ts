@@ -1,4 +1,4 @@
-import type { ParsedSection } from '@/model/component/ResumeSection';
+import type { ParsedSection } from "@/model/component/ParsedSection";
 
 export const parseByPattern = (
   content: string,

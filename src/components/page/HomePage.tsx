@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { contentClient } from "@/client/ContentClient";
-import { parseByPattern } from "@/util/sectionParser";
+import { parseByPattern } from "@/util/resumeSectionParser";
 import {
   SECTION_STYLES,
   DEFAULT_SECTION_STYLE,
