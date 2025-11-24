@@ -19,14 +19,12 @@ interface DesktopNavigationProps {
   items: NavItem[];
 }
 
-const NAV_GAP = "clamp(1px,2vw,2rem)";
-
 const DesktopNavigation = ({ items }: DesktopNavigationProps) => {
   return (
     <div className="flex items-center justify-between w-full">
       <div className="flex-1" />
       <NavigationMenu>
-        <NavigationMenuList className={`gap-[${NAV_GAP}]`}>
+        <NavigationMenuList className={`gap-[clamp(1px,2vw,2rem)]`}>
           {items.map((item) => (
             <NavigationMenuItem key={item.href}>
               <NavigationMenuLink asChild>
@@ -44,7 +42,7 @@ const DesktopNavigation = ({ items }: DesktopNavigationProps) => {
           ))}
         </NavigationMenuList>
       </NavigationMenu>
-      <div className={`flex-1 flex justify-end ml-[${NAV_GAP}]`}>
+      <div className={`flex-1 flex justify-end ml-[clamp(1px,2vw,2rem)]`}>
         <AuthWidget variant={PlatformVariant.DESKTOP} />
       </div>
     </div>

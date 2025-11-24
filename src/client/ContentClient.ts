@@ -9,8 +9,8 @@ class ContentClient {
     this.client = client;
   }
 
-  async getResume(): Promise<ContentView> {
-    const response = await this.client.get<ContentView>('/content/resume');
+  async getAbout(): Promise<ContentView> {
+    const response = await this.client.get<ContentView>('/content/about');
     return response.data;
   }
 }

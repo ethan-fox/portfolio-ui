@@ -25,7 +25,7 @@ const RotatingDomainText = () => {
 
   return (
     <>
-      <span className="relative top-0 md:top-[-1px] lg:top-[-2px]">{"{"}</span>
+      <span className="relative top-0 md:-top-px lg:-top-0.5">{"{"}</span>
       <AnimatePresence mode="wait">
         <motion.span
           key={currentIndex}
@@ -39,7 +39,7 @@ const RotatingDomainText = () => {
           {domains[currentIndex]}
         </motion.span>
       </AnimatePresence>
-      <span className="relative top-0 md:top-[-1px] lg:top-[-2px]">{"}"}</span>
+      <span className="relative top-0 md:-top-px lg:-top-0.5">{"}"}</span>
     </>
   );
 };
