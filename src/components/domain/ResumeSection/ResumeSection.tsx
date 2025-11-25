@@ -9,7 +9,6 @@ export interface ResumeSectionProps {
   styleConfig?: SectionStyleConfig;
 }
 
-
 const ResumeSection = ({ title, content, styleConfig }: ResumeSectionProps) => {
   const customRenderer = styleConfig?.customRenderer;
 
@@ -20,7 +19,9 @@ const ResumeSection = ({ title, content, styleConfig }: ResumeSectionProps) => {
           {title}
         </CardTitle>
       </CardHeader>
-      <CardContent className={cn("pt-6 text-left", styleConfig?.contentClassName)}>
+      <CardContent
+        className={cn("pt-6 text-left", styleConfig?.contentClassName)}
+      >
         {customRenderer ? (
           customRenderer(content)
         ) : (

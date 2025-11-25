@@ -27,17 +27,18 @@ const MobileNavigation = ({
   onOpenChange,
 }: MobileNavigationProps) => {
   return (
-    <div className="flex justify-center">
-      <Sheet open={open} onOpenChange={onOpenChange}>
-        <SheetTrigger className="flex items-center gap-2 p-2 hover:bg-accent rounded-md">
+    <Sheet open={open} onOpenChange={onOpenChange}>
+      <SheetTrigger asChild>
+        <div className="flex items-center justify-center gap-2 w-full py-6">
           <Menu className="h-5 w-5" />
           <span className="text-sm font-mono">Menu</span>
-        </SheetTrigger>
-        <SheetPortal>
-          <SheetOverlay className="flex items-center">
+        </div>
+      </SheetTrigger>
+      <SheetPortal>
+          <SheetOverlay className="flex items-center backdrop-blur-sm transition-all duration-300">
             <div className="text-white text-sm font-mono text-center w-1/4 sm:w-[calc(100%-24rem)] flex flex-col items-center gap-2">
               <ArrowRightToLine className="h-6 w-6" />
-              <span>Tap to close</span>
+              Tap to close
             </div>
           </SheetOverlay>
           <SheetContent
@@ -63,8 +64,7 @@ const MobileNavigation = ({
             </div>
           </SheetContent>
         </SheetPortal>
-      </Sheet>
-    </div>
+    </Sheet>
   );
 };
 

@@ -16,14 +16,12 @@ const NavigationTray = ({ items }: NavigationTrayProps) => {
 
   return (
     <nav className="bg-backgrond border-b border-border">
-      <div className="w-full mx-auto py-4 px-4">
-        <div className="md:hidden">
-          <MobileNavigation items={items} open={open} onOpenChange={setOpen}/>
-        </div>
+      <div className="md:hidden">
+        <MobileNavigation items={items} open={open} onOpenChange={setOpen}/>
+      </div>
 
-        <div className="hidden md:flex md:items-center md:justify-between">
-          <DesktopNavigation items={items} />
-        </div>
+      <div className="hidden md:flex md:items-center md:justify-between w-full mx-auto py-4 px-4">
+        <DesktopNavigation items={items} />
       </div>
     </nav>
   );

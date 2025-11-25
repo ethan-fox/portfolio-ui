@@ -6,7 +6,8 @@ import {
   DEFAULT_SECTION_STYLE,
 } from "@/components/page/util/constant";
 import ResumeSection from "../domain/ResumeSection/ResumeSection";
-import type { ParsedSection } from "@/model/component/ResumeSection";
+import PageContainer from "@/components/custom/PageContainer/PageContainer";
+import type { ParsedSection } from "@/model/component/ParsedSection";
 
 const HomePage = () => {
   const [sections, setSections] = useState<ParsedSection[]>([]);
@@ -36,25 +37,13 @@ const HomePage = () => {
     fetchResume();
   }, []);
 
-  if (isLoading) {
-    return (
-      <div className="max-w-4xl mx-auto py-8 px-4">
-        <p className="text-muted-foreground">Loading...</p>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="max-w-4xl mx-auto py-8 px-4">
-        <p className="text-destructive">{error}</p>
-      </div>
-    );
-  }
-
   return (
-    <div className="max-w-4xl mx-auto py-8 px-4">
-      {sections.map((section, index) => {
+    <PageContainer>
+      {isLoading && <p className="text-muted-foreground">Loading...</p>}
+
+      {error && <p className="text-destructive">{error}</p>}
+
+      {!isLoading && !error && sections.map((section, index) => {
         const styleConfig =
           SECTION_STYLES[section.title] || DEFAULT_SECTION_STYLE;
         return (
@@ -66,7 +55,7 @@ const HomePage = () => {
           />
         );
       })}
-    </div>
+    </PageContainer>
   );
 };
 

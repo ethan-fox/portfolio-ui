@@ -1,26 +1,18 @@
 import Markdown from "react-markdown";
 import { parseExperienceContent } from "@/util/experienceParser";
 import type { ParsedExperience } from "@/model/component/ParsedSection";
-import { Badge } from "@/components/ui/badge";
+import ExperienceSheetBadges from './ExperienceSheetBadges/ExperienceSheetBadges';
 
-interface ExperienceItemProps {
+interface ExperienceSheetContentProps {
   content: string;
 }
 
-const ExperienceItem = ({ content }: ExperienceItemProps) => {
+const ExperienceSheetContent = ({ content }: ExperienceSheetContentProps) => {
   const parsedExperience: ParsedExperience = parseExperienceContent(content);
 
   return (
     <div>
-      {parsedExperience.location && (
-        <Badge className="bg-muted font-bold">{parsedExperience.location}</Badge>
-      )}
-
-      {parsedExperience.positions.map((position, index) => (
-        <Badge key={index}>
-          {position.title} | {position.dateRange}
-        </Badge>
-      ))}
+      <ExperienceSheetBadges parsedExperience={parsedExperience} />
 
       {parsedExperience.remainingContent && (
         <Markdown
@@ -48,6 +40,16 @@ const ExperienceItem = ({ content }: ExperienceItemProps) => {
                 {children}
               </strong>
             ),
+            a: ({ children, href }) => (
+              <a
+                href={href}
+                className="text-primary font-bold underline hover:text-white"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {children}
+              </a>
+            ),
           }}
         >
           {parsedExperience.remainingContent}
@@ -57,4 +59,4 @@ const ExperienceItem = ({ content }: ExperienceItemProps) => {
   );
 };
 
-export default ExperienceItem;
+export default ExperienceSheetContent;
