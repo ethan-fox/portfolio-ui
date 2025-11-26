@@ -9,8 +9,8 @@ import NavigationTray from "@/components/domain/NavigationTray/NavigationTray";
 function App() {
   const navItems = [
     { label: "Home", href: "/" },
-    { label: "Portfolio", href: "/portfolio" },
-    { label: "Games", href: "/games" },
+    { label: "Portfolio", href: "/portfolio", disabled: true },
+    { label: "Games", href: "/games", disabled: true },
     { label: "Privacy", href: "/privacy" },
   ];
 

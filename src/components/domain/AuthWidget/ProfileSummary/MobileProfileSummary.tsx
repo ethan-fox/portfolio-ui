@@ -23,25 +23,27 @@ const MobileProfileSummary = ({ displayName, photoURL, onSignOut, className }: M
   };
 
   return (
-    <div className={`flex items-center gap-3 ${className}`}>
-      <Avatar className="h-10 w-10">
-        <AvatarImage src={photoURL || undefined} alt={displayName || 'User'} />
-        <AvatarFallback>{displayName?.charAt(0) || '?'}</AvatarFallback>
-      </Avatar>
+    <div className={`flex gap-3 justify-between ${className}`}>
+      <div className="flex flex-col gap-2">
+        <Avatar className="h-10 w-10">
+          <AvatarImage src={photoURL || undefined} alt={displayName || 'User'} />
+          <AvatarFallback>{displayName?.charAt(0) || '?'}</AvatarFallback>
+        </Avatar>
+        <span className="font-semibold">{displayName}</span>
+      </div>
 
-      <div className="flex flex-col gap-1">
-        <span className="text-sm font-medium leading-none">{displayName}</span>
+      <div className="flex items-end">
         <Button
-          variant="ghost"
+          variant="outline"
           size="sm"
           onClick={handleSignOut}
           disabled={loading}
-          className="h-auto p-0 text-xs text-muted-foreground hover:text-foreground justify-start"
+          className="cursor-pointer justify-start"
         >
           {loading ? (
-            <Loader2 className="h-3 w-3 animate-spin mr-1" />
+            <Loader2 className="h-4 w-4 animate-spin mr-2" />
           ) : (
-            <LogOut className="h-3 w-3 mr-1" />
+            <LogOut className="h-4 w-4 mr-2" />
           )}
           Sign Out
         </Button>

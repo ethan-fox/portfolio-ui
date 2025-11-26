@@ -5,6 +5,7 @@ import DesktopNavigation from "./DesktopNavigation";
 interface NavItem {
   label: string;
   href: string;
+  disabled?: boolean;
 }
 
 interface NavigationTrayProps {

@@ -8,10 +8,9 @@ export const SECTION_STYLES: Record<string, SectionStyleConfig> = {
   'About Me': {
     ...baseCardStyle().build(),
     customRenderer: (content: string) => (
-      // TODO get profile pic
       <AboutMeContent
         content={content}
-        profilePhotoSrc="/img/x.png"
+        profilePhotoSrc="/profile.jpg"
         profilePhotoAlt="Profile photo"
         profilePhotoFallback="EF"
       />
