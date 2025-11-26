@@ -39,7 +39,10 @@ const MobileNavigation = ({
           <SheetOverlay className="flex items-center backdrop-blur-sm transition-all duration-300">
             <div className="text-white text-sm font-mono text-center w-1/4 sm:w-[calc(100%-24rem)] flex flex-col items-center gap-2">
               <ArrowRightToLine className="h-6 w-6" />
-              Tap to close
+              <div className="flex flex-col">
+                <span>Tap to</span>
+                <span>close</span>
+              </div>
             </div>
           </SheetOverlay>
           <SheetContent

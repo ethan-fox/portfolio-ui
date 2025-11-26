@@ -9,7 +9,7 @@ const PrimarySkillCards = () => {
           key={skill.name}
           name={skill.name}
           image={skill.image}
-          className="aspect-square py-2 desktop:w-40 desktop:h-40"
+          className="aspect-square py-2 max-w-32 max-h-32 mx-auto desktop:max-w-40 desktop:max-h-40 desktop:w-40 desktop:h-40"
         />
       ))}
     </div>
