@@ -1,6 +1,5 @@
 import { PRIMARY_SKILLS } from "../constant";
 import PrimarySkillCard from "./PrimarySkillCard/PrimarySkillCard";
-import { Separator } from "@/components/ui/separator";
 
 const PrimarySkillCards = () => {
   return (
