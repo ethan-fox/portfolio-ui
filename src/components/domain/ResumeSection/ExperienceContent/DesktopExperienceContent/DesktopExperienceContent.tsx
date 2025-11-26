@@ -1,14 +1,10 @@
 import { useRef } from 'react';
 import { Accordion } from '@/components/ui/accordion';
-import ExperienceAccordionItem from './ExperienceAccordionItem/ExperienceAccordionItem';
-
-interface ExperienceItem {
-  title: string;
-  content: string;
-}
+import ExperienceAccordionItem from "@/components/domain/ResumeSection/ExperienceContent/DesktopExperienceContent/ExperienceAccordionItem/ExperienceAccordionItem"
+import type { ParsedExperienceItem } from '@/model/component/ParsedSection';
 
 interface DesktopExperienceContentProps {
-  experienceItems: ExperienceItem[];
+  experienceItems: ParsedExperienceItem[];
 }
 
 const DesktopExperienceContent = ({ experienceItems }: DesktopExperienceContentProps) => {
@@ -40,7 +36,11 @@ const DesktopExperienceContent = ({ experienceItems }: DesktopExperienceContentP
           key={`experience-${index}`}
           value={`item-${index}`}
           title={item.title}
-          content={item.content}
+          parsedExperience={{
+            location: item.location,
+            positions: item.positions,
+            remainingContent: item.remainingContent,
+          }}
           ref={(el) => { itemRefs.current[index] = el; }}
         />
       ))}

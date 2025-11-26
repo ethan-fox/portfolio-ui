@@ -1,18 +1,15 @@
 import Markdown from "react-markdown";
-import { parseExperienceContent } from "@/util/experienceParser";
 import type { ParsedExperience } from "@/model/component/ParsedSection";
-import ExperienceBadges from "./ExperienceBadges/ExperienceBadges";
+import ExperiencePositionInfo from "@/components/domain/ResumeSection/ExperienceContent/DesktopExperienceContent/ExperienceAccordionItem/ExperienceItem/ExperiencePositionInfo/ExperiencePositionInfo";
 
 interface ExperienceItemProps {
-  content: string;
+  parsedExperience: ParsedExperience;
 }
 
-const ExperienceItem = ({ content }: ExperienceItemProps) => {
-  const parsedExperience: ParsedExperience = parseExperienceContent(content);
-
+const ExperienceItem = ({ parsedExperience }: ExperienceItemProps) => {
   return (
     <div>
-      <ExperienceBadges parsedExperience={parsedExperience} />
+      <ExperiencePositionInfo parsedExperience={parsedExperience} />
 
       {parsedExperience.remainingContent && (
         <Markdown
@@ -47,7 +44,7 @@ const ExperienceItem = ({ content }: ExperienceItemProps) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {children} 
+                {children}
               </a>
             ),
           }}

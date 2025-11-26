@@ -1,15 +1,28 @@
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetPortal, SheetOverlay } from '@/components/ui/sheet';
-import { ArrowDownToLine } from 'lucide-react';
-import ExperienceSheetContent from './ExperienceSheetContent/ExperienceSheetContent';
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetPortal,
+  SheetOverlay,
+} from "@/components/ui/sheet";
+import { ArrowDownToLine } from "lucide-react";
+import ExperienceSheetContent from "./ExperienceSheetContent/ExperienceSheetContent";
+import type { ParsedExperience } from "@/model/component/ParsedExperience";
 
 interface ExperienceSheetProps {
   isOpen: boolean;
   onClose: () => void;
   title: string;
-  content: string;
+  parsedExperience: ParsedExperience;
 }
 
-const ExperienceSheet = ({ isOpen, onClose, title, content }: ExperienceSheetProps) => {
+const ExperienceSheet = ({
+  isOpen,
+  onClose,
+  title,
+  parsedExperience,
+}: ExperienceSheetProps) => {
   return (
     <Sheet open={isOpen} onOpenChange={onClose}>
       <SheetPortal>
@@ -19,13 +32,14 @@ const ExperienceSheet = ({ isOpen, onClose, title, content }: ExperienceSheetPro
             Tap to close
           </div>
         </SheetOverlay>
-        <SheetContent side="bottom" className="h-[85vh] overflow-y-auto">
-          <SheetHeader className="sticky top-0 bg-background">
+        <SheetContent
+          side="bottom"
+          className="h-[85vh] overflow-y-auto [&>button]:hidden"
+        >
+          <SheetHeader className="sticky top-0 bg-background shadow-lg">
             <SheetTitle>{title}</SheetTitle>
           </SheetHeader>
-          <div className="mt-4">
-            <ExperienceSheetContent content={content} />
-          </div>
+          <ExperienceSheetContent parsedExperience={parsedExperience} />
         </SheetContent>
       </SheetPortal>
     </Sheet>

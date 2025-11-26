@@ -1,14 +1,11 @@
 import { useState } from 'react';
 import ExperienceButton from './ExperienceButton/ExperienceButton';
 import ExperienceSheet from './ExperienceSheet/ExperienceSheet';
-
-interface ExperienceItem {
-  title: string;
-  content: string;
-}
+import type { ParsedExperienceItem } from '@/model/component/ParsedSection';
+import { consolidateDateRanges } from '../util/dateRange';
 
 interface MobileExperienceContentProps {
-  experienceItems: ExperienceItem[];
+  experienceItems: ParsedExperienceItem[];
 }
 
 const MobileExperienceContent = ({ experienceItems }: MobileExperienceContentProps) => {
@@ -32,6 +29,7 @@ const MobileExperienceContent = ({ experienceItems }: MobileExperienceContentPro
         <ExperienceButton
           key={`experience-${index}`}
           title={item.title}
+          secondary={consolidateDateRanges(item.positions.map(p => p.dateRange))}
           onClick={() => handleButtonClick(index)}
         />
       ))}
@@ -41,7 +39,11 @@ const MobileExperienceContent = ({ experienceItems }: MobileExperienceContentPro
           isOpen={isSheetOpen}
           onClose={handleSheetClose}
           title={selectedExperience.title}
-          content={selectedExperience.content}
+          parsedExperience={{
+            location: selectedExperience.location,
+            positions: selectedExperience.positions,
+            remainingContent: selectedExperience.remainingContent,
+          }}
         />
       )}
     </div>

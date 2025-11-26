@@ -1,11 +1,11 @@
 import { parseByPattern } from '@/util/resumeSectionParser';
-import { PlatformVariant } from '@/model/PlatformVariant';
+import { parseExperienceContent } from '@/util/experienceParser';
 import DesktopExperienceContent from './DesktopExperienceContent/DesktopExperienceContent';
 import MobileExperienceContent from './MobileExperienceContent/MobileExperienceContent';
+import type { ParsedExperienceItem } from '@/model/component/ParsedSection';
 
 interface ExperienceContentProps {
   content: string;
-  platformVariant?: PlatformVariant;
 }
 
 const ExperienceContent = ({ content }: ExperienceContentProps) => {
@@ -15,14 +15,22 @@ const ExperienceContent = ({ content }: ExperienceContentProps) => {
     return <p className="text-muted-foreground">No experience entries found.</p>;
   }
 
+  const parsedExperienceItems: ParsedExperienceItem[] = experienceItems.map((item) => {
+    const parsed = parseExperienceContent(item.content);
+    return {
+      title: item.title,
+      ...parsed,
+    };
+  });
+
   return (
     <>
-      <div className="md:hidden">
-        <MobileExperienceContent experienceItems={experienceItems} />
+      <div className="desktop:hidden">
+        <MobileExperienceContent experienceItems={parsedExperienceItems} />
       </div>
 
-      <div className="hidden md:block">
-        <DesktopExperienceContent experienceItems={experienceItems} />
+      <div className="hidden desktop:block">
+        <DesktopExperienceContent experienceItems={parsedExperienceItems} />
       </div>
     </>
   );

@@ -1,22 +1,22 @@
 import Markdown from "react-markdown";
-import { parseExperienceContent } from "@/util/experienceParser";
 import type { ParsedExperience } from "@/model/component/ParsedSection";
-import ExperienceSheetBadges from './ExperienceSheetBadges/ExperienceSheetBadges';
+import ExperiencePositionInfo from "./ExperiencePositionInfo/ExperiencePositionInfo";
 
 interface ExperienceSheetContentProps {
-  content: string;
+  parsedExperience: ParsedExperience;
 }
 
-const ExperienceSheetContent = ({ content }: ExperienceSheetContentProps) => {
-  const parsedExperience: ParsedExperience = parseExperienceContent(content);
-
+const ExperienceSheetContent = ({
+  parsedExperience,
+}: ExperienceSheetContentProps) => {
   return (
     <div>
-      <ExperienceSheetBadges parsedExperience={parsedExperience} />
+      <ExperiencePositionInfo positions={parsedExperience.positions} />
 
       {parsedExperience.remainingContent && (
-        <Markdown
-          components={{
+        <div>
+          <Markdown
+            components={{
             h3: ({ children }) => (
               <h3 className="text-base font-medium text-foreground mt-2 mb-1">
                 {children}
@@ -26,7 +26,7 @@ const ExperienceSheetContent = ({ content }: ExperienceSheetContentProps) => {
               <p className="text-sm text-muted-foreground mb-3">{children}</p>
             ),
             ul: ({ children }) => (
-              <ul className="space-y-2 list-disc pl-5 marker:text-primary">
+              <ul className="space-y-2 list-disc px-5 marker:text-primary pb-5">
                 {children}
               </ul>
             ),
@@ -53,7 +53,8 @@ const ExperienceSheetContent = ({ content }: ExperienceSheetContentProps) => {
           }}
         >
           {parsedExperience.remainingContent}
-        </Markdown>
+          </Markdown>
+        </div>
       )}
     </div>
   );

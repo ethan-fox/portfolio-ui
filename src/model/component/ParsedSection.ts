@@ -13,3 +13,10 @@ export interface ParsedSection {
   title: string;
   content: string;
 }
+
+export interface ParsedExperienceItem {
+  title: string;
+  location: string;
+  positions: PositionTitle[];
+  remainingContent: string;
+}

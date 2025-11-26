@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import AuthWidget from "../AuthWidget/AuthWidget";
-import { PlatformVariant } from "@/model/PlatformVariant";
 
 interface NavItem {
   label: string;
@@ -21,7 +20,7 @@ interface DesktopNavigationProps {
 
 const DesktopNavigation = ({ items }: DesktopNavigationProps) => {
   return (
-    <div className="flex items-center justify-between w-full">
+    <div className="flex items-center justify-between w-full mx-auto py-4 px-4">
       <div className="flex-1" />
       <NavigationMenu>
         <NavigationMenuList className={`gap-[clamp(1px,2vw,2rem)]`}>
@@ -43,7 +42,7 @@ const DesktopNavigation = ({ items }: DesktopNavigationProps) => {
         </NavigationMenuList>
       </NavigationMenu>
       <div className={`flex-1 flex justify-end ml-[clamp(1px,2vw,2rem)]`}>
-        <AuthWidget variant={PlatformVariant.DESKTOP} />
+        <AuthWidget />
       </div>
     </div>
   );

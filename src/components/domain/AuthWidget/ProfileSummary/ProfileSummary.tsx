@@ -1,4 +1,3 @@
-import { PlatformVariant } from '@/model/PlatformVariant';
 import DesktopProfileSummary from './DesktopProfileSummary';
 import MobileProfileSummary from './MobileProfileSummary';
 
@@ -7,15 +6,19 @@ interface ProfileSummaryProps {
   photoURL: string | null;
   onSignOut: () => Promise<void>;
   className?: string;
-  variant: PlatformVariant;
 }
 
-const ProfileSummary = ({ variant, ...props }: ProfileSummaryProps) => {
-  if (variant === PlatformVariant.MOBILE) {
-    return <MobileProfileSummary {...props} />;
-  }
-
-  return <DesktopProfileSummary {...props} />;
+const ProfileSummary = (props: ProfileSummaryProps) => {
+  return (
+    <>
+      <div className="desktop:hidden">
+        <MobileProfileSummary {...props} />
+      </div>
+      <div className="hidden desktop:block">
+        <DesktopProfileSummary {...props} />
+      </div>
+    </>
+  );
 };
 
 export default ProfileSummary;

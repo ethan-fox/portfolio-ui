@@ -2,15 +2,13 @@ import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { useAuth } from "@/hook/useAuth";
 import { Loader2 } from "lucide-react";
-import { PlatformVariant } from "@/model/PlatformVariant";
 import ProfileSummary from "@/components/domain/AuthWidget/ProfileSummary/ProfileSummary";
 
 interface AuthWidgetProps {
   className?: string;
-  variant: PlatformVariant;
 }
 
-const AuthWidget = ({ className, variant }: AuthWidgetProps) => {
+const AuthWidget = ({ className }: AuthWidgetProps) => {
   const {
     user,
     loading: authLoading,
@@ -70,7 +68,6 @@ const AuthWidget = ({ className, variant }: AuthWidgetProps) => {
             photoURL={user.picture}
             onSignOut={signOut}
             className={className}
-            variant={variant}
           />
         </motion.div>
       ) : (

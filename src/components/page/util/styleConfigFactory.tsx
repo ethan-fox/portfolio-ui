@@ -41,7 +41,7 @@ export const baseCardStyle = () =>
   createStyleConfig()
     .card('bg-transparent border-transparent shadow-none')
     .header('border-b [.border-b]:pb-2')
-    .title('text-2xl font-semibold text-foreground text-left md:text-center')
+    .title('text-2xl font-semibold text-foreground text-left desktop:text-center')
     .content('py-0');
 
 export const markdownComponents = {

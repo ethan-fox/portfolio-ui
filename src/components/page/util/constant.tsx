@@ -2,6 +2,7 @@ import type { SectionStyleConfig } from '@/model/component/ResumeSection';
 import { baseCardStyle, markdownComponents } from '@/components/page/util/styleConfigFactory';
 import ExperienceContent from '@/components/domain/ResumeSection/ExperienceContent/ExperienceContent';
 import AboutMeContent from '@/components/domain/ResumeSection/AboutMeContent/AboutMeContent';
+import ExpertiseContent from '@/components/domain/ResumeSection/ExpertiseContent/ExpertiseContent';
 
 export const SECTION_STYLES: Record<string, SectionStyleConfig> = {
   'About Me': {
@@ -17,12 +18,12 @@ export const SECTION_STYLES: Record<string, SectionStyleConfig> = {
     ),
   },
 
-  'Proficiencies': baseCardStyle()
-    .content('space-y-4')
-    .withMarkdown(markdownComponents.compactGrid)
-    .build(),
+  'Expertise': {
+    ...baseCardStyle().build(),
+    customRenderer: (content: string) => <ExpertiseContent content={content} />,
+  },
 
-  'Experience': {
+  'Work Experience': {
     ...baseCardStyle().build(),
     customRenderer: (content: string) => <ExperienceContent content={content} />,
   },

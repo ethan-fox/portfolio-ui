@@ -5,9 +5,9 @@ import {
   SheetTrigger,
   SheetPortal,
   SheetOverlay,
+  SheetTitle,
 } from "@/components/ui/sheet";
 import { Menu, ArrowRightToLine } from "lucide-react";
-import { PlatformVariant } from "@/model/PlatformVariant";
 import AuthWidget from "@/components/domain/AuthWidget/AuthWidget";
 
 interface NavItem {
@@ -45,6 +45,7 @@ const MobileNavigation = ({
             side="right"
             className="flex flex-col [&>button]:hidden"
           >
+            <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
             <div className="flex-1 flex flex-col justify-center">
               <nav className="flex flex-col gap-4">
                 {items.map((item) => (
@@ -60,7 +61,7 @@ const MobileNavigation = ({
               </nav>
             </div>
             <div className="mb-4 p-4">
-              <AuthWidget className="w-full" variant={PlatformVariant.MOBILE} />
+              <AuthWidget className="w-full" />
             </div>
           </SheetContent>
         </SheetPortal>

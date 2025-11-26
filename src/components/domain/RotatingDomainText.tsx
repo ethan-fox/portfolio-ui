@@ -29,7 +29,7 @@ const RotatingDomainText = () => {
       <AnimatePresence mode="wait">
         <motion.span
           key={currentIndex}
-          initial={{ opacity: 0, y:- 20, scale }}
+          initial={{ opacity: 0, y: -20, scale }}
           animate={{ opacity: 1, y: 0, scale }}
           exit={{ opacity: 0, y: 20, scale }}
           transition={{ duration: 0.5 }}

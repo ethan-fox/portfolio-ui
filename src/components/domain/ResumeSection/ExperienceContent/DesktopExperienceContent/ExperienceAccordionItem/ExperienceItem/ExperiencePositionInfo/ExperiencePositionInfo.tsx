@@ -1,11 +1,11 @@
 import type { ParsedExperience } from "@/model/component/ParsedSection";
 import StyledBadge from "@/components/custom/StyledBadge";
 
-interface ExperienceBadgesProps {
+interface ExperiencePositionInfo {
   parsedExperience: ParsedExperience;
 }
 
-const ExperienceBadges = ({ parsedExperience }: ExperienceBadgesProps) => {
+const ExperiencePositionInfo = ({ parsedExperience }: ExperiencePositionInfo) => {
   return (
     <div className="flex justify-between items-start mb-4">
       <div className="flex flex-col items-start gap-2 w-full md:w-auto">
@@ -17,7 +17,7 @@ const ExperienceBadges = ({ parsedExperience }: ExperienceBadgesProps) => {
         ))}
       </div>
 
-      <div className="hidden md:flex justify-end">
+      <div className="hidden desktop:flex justify-end">
         {parsedExperience.location && (
           <StyledBadge variant="outline">
             {parsedExperience.location}
@@ -28,4 +28,4 @@ const ExperienceBadges = ({ parsedExperience }: ExperienceBadgesProps) => {
   );
 };
 
-export default ExperienceBadges;
+export default ExperiencePositionInfo;

@@ -6,8 +6,8 @@ import {
   DEFAULT_SECTION_STYLE,
 } from "@/components/page/util/constant";
 import ResumeSection from "../domain/ResumeSection/ResumeSection";
-import PageContainer from "@/components/custom/PageContainer/PageContainer";
 import type { ParsedSection } from "@/model/component/ParsedSection";
+import PageContainer from "@/components/custom/PageContainer";
 
 const HomePage = () => {
   const [sections, setSections] = useState<ParsedSection[]>([]);
