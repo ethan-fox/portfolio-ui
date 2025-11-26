@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useEffect, useState } from 'react';
 
 interface User {
@@ -7,13 +8,17 @@ interface User {
   picture: string;
 }
 
+interface GoogleCredentialResponse {
+  credential: string;
+}
+
 export interface AuthContextType {
   user: User | null;
   loading: boolean;
   signInWithGoogle: () => void;
   signOut: () => Promise<void>;
   getGoogleToken: () => string | null;
-  handleCredentialResponse: (response: any) => Promise<void>;
+  handleCredentialResponse: (response: GoogleCredentialResponse) => Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -33,7 +38,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setLoading(false);
   }, []);
 
-  const handleCredentialResponse = async (response: any) => {
+  const handleCredentialResponse = async (response: GoogleCredentialResponse) => {
     try {
       const googleToken = response.credential;
 

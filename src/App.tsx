@@ -1,10 +1,12 @@
 import "./App.css";
+import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import { Toaster } from "@/components/ui/sonner";
-import PrivacyPage from "@/components/page/PrivacyPage";
-import HomePage from "@/components/page/HomePage";
 import HomeBanner from "@/components/domain/HomeBanner";
 import NavigationTray from "@/components/domain/NavigationTray/NavigationTray";
+
+const HomePage = lazy(() => import("@/components/page/HomePage"));
+const PrivacyPage = lazy(() => import("@/components/page/PrivacyPage"));
 
 function App() {
   const navItems = [
@@ -20,10 +22,12 @@ function App() {
       <div className="min-h-screen bg-background">
         <HomeBanner />
         <NavigationTray items={navItems} />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/privacy" element={<PrivacyPage />} />
-        </Routes>
+        <Suspense fallback={<div className="flex justify-center items-center min-h-[400px]">Loading...</div>}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
+          </Routes>
+        </Suspense>
       </div>
     </>
   );
