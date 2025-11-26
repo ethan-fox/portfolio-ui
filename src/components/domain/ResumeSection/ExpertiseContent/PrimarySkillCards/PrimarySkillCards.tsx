@@ -1,0 +1,20 @@
+import { PRIMARY_SKILLS } from "../constant";
+import PrimarySkillCard from "./PrimarySkillCard/PrimarySkillCard";
+import { Separator } from "@/components/ui/separator";
+
+const PrimarySkillCards = () => {
+  return (
+    <div className="grid grid-cols-2 gap-4 space-y-4 p-4 desktop:p-0 desktop:flex">
+      {PRIMARY_SKILLS.map((skill) => (
+        <PrimarySkillCard
+          key={skill.name}
+          name={skill.name}
+          image={skill.image}
+          className="aspect-square py-2 desktop:w-40 desktop:h-40"
+        />
+      ))}
+    </div>
+  );
+};
+
+export default PrimarySkillCards;

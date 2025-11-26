@@ -1,35 +1,47 @@
-import { useEffect, useRef } from 'react';
-import { useAuth } from '@/hook/useAuth';
-import { Loader2 } from 'lucide-react';
-import ProfileSummary from '@/components/domain/ProfileSummary/ProfileSummary';
+import { useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { useAuth } from "@/hook/useAuth";
+import { Loader2 } from "lucide-react";
+import ProfileSummary from "@/components/domain/AuthWidget/ProfileSummary/ProfileSummary";
 
 interface AuthWidgetProps {
   className?: string;
 }
 
 const AuthWidget = ({ className }: AuthWidgetProps) => {
-  const { user, loading: authLoading, signOut, handleCredentialResponse } = useAuth();
+  const {
+    user,
+    loading: authLoading,
+    signOut,
+    handleCredentialResponse,
+  } = useAuth();
   const buttonRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (typeof google === 'undefined' || !buttonRef.current || user || authLoading) {
+    if (
+      typeof google === "undefined" ||
+      !buttonRef.current ||
+      user ||
+      authLoading
+    ) {
       return;
     }
 
-    google.accounts.id.initialize({
-      client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
-      callback: handleCredentialResponse,
-    });
+    try {
+      google.accounts.id.initialize({
+        client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+        callback: handleCredentialResponse,
+      });
 
-    google.accounts.id.renderButton(
-      buttonRef.current,
-      {
-        theme: 'outline',
-        size: 'large',
-        text: 'signin_with',
-        shape: 'pill',
-      }
-    );
+      google.accounts.id.renderButton(buttonRef.current, {
+        theme: "outline",
+        size: "large",
+        text: "signin_with",
+        shape: "pill",
+      });
+    } catch (error) {
+      console.error('Failed to initialize Google Sign-In:', error);
+    }
   }, [user, authLoading, handleCredentialResponse]);
 
   if (authLoading) {
@@ -40,18 +52,38 @@ const AuthWidget = ({ className }: AuthWidgetProps) => {
     );
   }
 
-  if (user) {
-    return (
-      <ProfileSummary
-        displayName={user.name}
-        photoURL={user.picture}
-        onSignOut={signOut}
-        className={className}
-      />
-    );
-  }
-
-  return <div ref={buttonRef} className={className}></div>;
+  return (
+    <AnimatePresence mode="popLayout">
+      {user ? (
+        <motion.div
+          key="profile"
+          layoutId="auth-widget"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
+        >
+          <ProfileSummary
+            displayName={user.name}
+            photoURL={user.picture}
+            onSignOut={signOut}
+            className={className}
+          />
+        </motion.div>
+      ) : (
+        <motion.div
+          key="signin"
+          layoutId="auth-widget"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
+          ref={buttonRef}
+          className={className}
+        />
+      )}
+    </AnimatePresence>
+  );
 };
 
 export default AuthWidget;

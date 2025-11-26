@@ -1,17 +1,16 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { Toaster } from "@/components/ui/sonner";
-import HomePage from "@/components/domain/page/HomePage";
-import PrivacyPage from "@/components/domain/page/PrivacyPage";
+import PrivacyPage from "@/components/page/PrivacyPage";
+import HomePage from "@/components/page/HomePage";
 import HomeBanner from "@/components/domain/HomeBanner";
 import NavigationTray from "@/components/domain/NavigationTray/NavigationTray";
 
 function App() {
   const navItems = [
     { label: "Home", href: "/" },
-    { label: "Games", href: "/games" },
-    { label: "Portfolio", href: "/portfolio" },
-    { label: "About", href: "/about" },
+    { label: "Portfolio", href: "/portfolio", disabled: true },
+    { label: "Games", href: "/games", disabled: true },
     { label: "Privacy", href: "/privacy" },
   ];
 

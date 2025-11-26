@@ -1,12 +1,19 @@
 import { Link } from "react-router-dom";
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
-import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetPortal,
+  SheetOverlay,
+  SheetTitle,
+} from "@/components/ui/sheet";
+import { Menu, ArrowRightToLine } from "lucide-react";
 import AuthWidget from "@/components/domain/AuthWidget/AuthWidget";
 
 interface NavItem {
   label: string;
   href: string;
+  disabled?: boolean;
 }
 
 interface MobileNavigationProps {
@@ -15,39 +22,61 @@ interface MobileNavigationProps {
   onOpenChange: (open: boolean) => void;
 }
 
-const MobileNavigation = ({ items, open, onOpenChange }: MobileNavigationProps) => {
+const MobileNavigation = ({
+  items,
+  open,
+  onOpenChange,
+}: MobileNavigationProps) => {
   return (
-    <div className="flex justify-center">
-      <Sheet open={open} onOpenChange={onOpenChange}>
-        <SheetTrigger className="flex items-center gap-2 p-2 hover:bg-accent rounded-md">
+    <Sheet open={open} onOpenChange={onOpenChange}>
+      <SheetTrigger asChild>
+        <div className="flex items-center justify-center gap-2 w-full py-6">
           <Menu className="h-5 w-5" />
           <span className="text-sm font-mono">Menu</span>
-        </SheetTrigger>
-        <SheetContent side="right" className="flex flex-col [&>button]:hidden">
-          <div className="mt-8">
-            <AuthWidget className="w-full" />
-          </div>
-          <nav className="flex flex-col gap-4 mt-auto pb-4">
-            {items.map((item) => (
-              <Link
-                key={item.href}
-                to={item.href}
-                onClick={() => onOpenChange(false)}
-                className="text-lg font-mono hover:text-accent-foreground hover:bg-accent px-4 py-2 rounded-md transition-colors"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-          <SheetClose asChild>
-            <Button variant="outline" className="w-full mt-auto mb-4">
-              <X className="h-4 w-4 mr-2" />
-              Close
-            </Button>
-          </SheetClose>
-        </SheetContent>
-      </Sheet>
-    </div>
+        </div>
+      </SheetTrigger>
+      <SheetPortal>
+          <SheetOverlay className="flex items-center backdrop-blur-sm transition-all duration-300">
+            <div className="text-white text-sm font-mono text-center w-1/4 sm:w-[calc(100%-24rem)] flex flex-col items-center gap-2">
+              <ArrowRightToLine className="h-6 w-6" />
+              Tap to close
+            </div>
+          </SheetOverlay>
+          <SheetContent
+            side="right"
+            className="flex flex-col [&>button]:hidden"
+          >
+            <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+            <div className="flex-1 flex flex-col justify-center">
+              <nav className="flex flex-col gap-4">
+                {items.map((item) => (
+                  item.disabled ? (
+                    <div
+                      key={item.href}
+                      className="text-lg font-mono px-4 py-2 flex items-center gap-2 text-muted-foreground"
+                    >
+                      <span className="line-through decoration-2">{item.label}</span>
+                      <span className="text-sm">Coming soon!</span>
+                    </div>
+                  ) : (
+                    <Link
+                      key={item.href}
+                      to={item.href}
+                      onClick={() => onOpenChange(false)}
+                      className="text-lg font-mono hover:text-accent-foreground hover:bg-accent px-4 py-2 rounded-md transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  )
+                ))}
+              </nav>
+            </div>
+            <div className="mb-4 p-4">
+              <AuthWidget className="w-full" />
+            </div>
+          </SheetContent>
+        </SheetPortal>
+    </Sheet>
   );
 };
 
