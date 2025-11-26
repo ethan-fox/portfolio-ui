@@ -3,7 +3,7 @@ import PrimarySkillCard from "./PrimarySkillCard/PrimarySkillCard";
 
 const PrimarySkillCards = () => {
   return (
-    <div className="grid grid-cols-2 gap-4 p-4 desktop:flex desktop:p-0">
+    <div className="grid grid-cols-2 gap-4 place-items-center p-4 desktop:flex desktop:p-0">
       {PRIMARY_SKILLS.map((skill) => (
         <PrimarySkillCard
           key={skill.name}

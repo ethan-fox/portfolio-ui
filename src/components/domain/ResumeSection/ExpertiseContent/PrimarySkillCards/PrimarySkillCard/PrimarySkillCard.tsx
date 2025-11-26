@@ -7,8 +7,10 @@ interface PrimarySkillCardProps {
 }
 
 const PrimarySkillCard = ({ name, image, className }: PrimarySkillCardProps) => {
+  // NOTE rendering `Card` design as invisible since I can't figure out the responsive
+  // styling out - especially on higher-res devices
   return (
-    <Card className={`p-0 gap-0 ${className}`}>
+    <Card className={`p-0 gap-0 border-0 bg-transparent shadow-none ${className}`}>
       <CardContent className="h-full flex flex-col items-center p-0">
         <div className="flex-1 flex items-center justify-center">
           <img
