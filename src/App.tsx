@@ -22,7 +22,7 @@ function App() {
       <div className="min-h-screen bg-background">
         <HomeBanner />
         <NavigationTray items={navItems} />
-        <Suspense fallback={<div className="flex justify-center items-center min-h-[400px]">Loading...</div>}>
+        <Suspense fallback={<div className="flex justify-center items-center min-h-[clamp(10rem,50vh,25rem)]">Loading...</div>}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/privacy" element={<PrivacyPage />} />

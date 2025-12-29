@@ -25,7 +25,7 @@ const DesktopExpertiseContent = ({
 
   return (
     <div className="flex flex-col items-center p-8 space-y-8">
-      <div className="w-full max-w-3xl space-y-4">
+      <div className="w-full max-w-[clamp(48rem,70vw,80rem)] space-y-4">
         <div className="space-y-2">
           <h3 className="text-lg font-semibold">Primary Skills</h3>
           <Separator />
@@ -36,12 +36,12 @@ const DesktopExpertiseContent = ({
       </div>
 
       {secondarySkills.length > 0 && (
-        <div className="w-full max-w-3xl space-y-4">
+        <div className="w-full max-w-[clamp(48rem,70vw,80rem)] space-y-4">
           <div className="space-y-2">
             <h3 className="text-lg font-semibold">Other Competencies</h3>
             <Separator />
           </div>
-          <ScrollArea className="h-[400px]">
+          <ScrollArea className="h-[clamp(20rem,40vh,40rem)]">
             <Table className="table-fixed">
               <TableBody>
                 {Array.from({

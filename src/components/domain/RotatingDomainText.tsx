@@ -34,7 +34,7 @@ const RotatingDomainText = () => {
           exit={{ opacity: 0, y: 20, scale }}
           transition={{ duration: 0.5 }}
           style={{ verticalAlign: "baseline" }}
-          className="inline-flex whitespace-nowrap w-[6ch] justify-center items-baseline"
+          className="inline-flex whitespace-nowrap w-[clamp(6ch,8vw,10ch)] justify-center items-baseline"
         >
           {domains[currentIndex]}
         </motion.span>

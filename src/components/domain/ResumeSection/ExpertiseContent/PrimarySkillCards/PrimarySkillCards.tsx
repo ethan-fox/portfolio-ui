@@ -9,7 +9,7 @@ const PrimarySkillCards = () => {
           key={skill.name}
           name={skill.name}
           image={skill.image}
-          className="w-32 h-32"
+          className="w-[clamp(8rem,15vw,10rem)] h-[clamp(8rem,15vw,10rem)]"
         />
       ))}
     </div>
