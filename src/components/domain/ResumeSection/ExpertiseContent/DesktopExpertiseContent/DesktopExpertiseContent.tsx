@@ -61,7 +61,7 @@ const DesktopExpertiseContent = ({
                           className={`w-1/3 text-center ${
                             isEmpty
                               ? ""
-                              : "hover:bg-muted/50 transition-colors cursor-pointer rounded"
+                              : "hover:bg-muted/50 hover:font-semibold transition-all rounded"
                           }`}
                         >
                           {skill || ""}
