@@ -8,7 +8,6 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { Menu, ArrowRightToLine } from "lucide-react";
-import AuthWidget from "@/components/domain/AuthWidget/AuthWidget";
 
 interface NavItem {
   label: string;
@@ -73,9 +72,6 @@ const MobileNavigation = ({
                   )
                 ))}
               </nav>
-            </div>
-            <div className="mb-4 p-4">
-              <AuthWidget className="w-full" />
             </div>
           </SheetContent>
         </SheetPortal>
