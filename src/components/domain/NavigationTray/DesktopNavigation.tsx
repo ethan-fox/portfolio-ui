@@ -13,7 +13,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
-import AuthWidget from "../AuthWidget/AuthWidget";
 
 interface NavItem {
   label: string;
@@ -68,9 +67,7 @@ const DesktopNavigation = ({ items }: DesktopNavigationProps) => {
           </NavigationMenuList>
         </NavigationMenu>
       </TooltipProvider>
-      <div className={`flex-1 flex justify-end ml-[clamp(1px,2vw,2rem)]`}>
-        <AuthWidget />
-      </div>
+      <div className="flex-1" />
     </div>
   );
 };

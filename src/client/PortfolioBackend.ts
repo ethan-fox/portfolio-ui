@@ -13,26 +13,6 @@ class PortfolioBackend {
           'Content-Type': 'application/json',
         },
       });
-
-      PortfolioBackend.instance.interceptors.request.use((config) => {
-        const googleToken = localStorage.getItem('googleToken');
-        if (googleToken) {
-          config.headers.Authorization = `Bearer ${googleToken}`;
-        }
-        return config;
-      });
-
-      PortfolioBackend.instance.interceptors.response.use(
-        (response) => response,
-        (error) => {
-          if (error.response?.status === 401) {
-            localStorage.removeItem('googleToken');
-            localStorage.removeItem('user');
-            window.location.href = '/';
-          }
-          return Promise.reject(error);
-        }
-      );
     }
 
     return PortfolioBackend.instance;
