@@ -32,3 +32,15 @@ export const DEFAULT_SECTION_STYLE: SectionStyleConfig = baseCardStyle()
   .content('prose dark:prose-invert max-w-none')
   .withMarkdown(markdownComponents.prose)
   .build();
+
+export const PORTFOLIO_TAGLINE = `I built & designed this website entirely myself. The full stack is composed of a React frontend and FastAPI backend, deployed in Google Cloud and managed by OpenTofu. My source code can be found on Github in the following repos:`;
+
+export const PORTFOLIO_INTRO_STYLE: SectionStyleConfig = baseCardStyle()
+  .withMarkdown({
+    p: ({ children }: { children?: React.ReactNode }) => (
+      <p className="text-md leading-relaxed text-foreground mb-4 text-left desktop:text-center">
+        {children}
+      </p>
+    ),
+  })
+  .build();
