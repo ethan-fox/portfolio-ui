@@ -14,7 +14,7 @@ function App() {
     { label: "Home", href: "/" },
     { label: "Portfolio", href: "/portfolio" },
     { label: "Blog", href: "/blog", disabled: true },
-    { label: "Privacy", href: "/privacy" },
+    // { label: "Privacy", href: "/privacy" }, // hidden for now — tied to old Google Auth flow, not currently in use
   ];
 
   return (

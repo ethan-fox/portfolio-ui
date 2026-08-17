@@ -55,6 +55,12 @@
 
 :root {
   --logo-text: oklch(0.967 0.001 286.375);
+  /* Fixed text colors — unaffected by the light/dark toggle, preserving the app's original (pre-toggle) look for specific elements (nav buttons, banner, badges). */
+  --pinned-foreground: oklch(0.985 0 0);
+  --pinned-muted-foreground: oklch(0.705 0.015 286.067);
+  --pinned-background: oklch(0.2824 0 226.06);
+  --pinned-primary-foreground: oklch(0.21 0.006 285.885);
+  --pinned-accent: oklch(0.274 0.006 286.033);
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.141 0.005 285.823);

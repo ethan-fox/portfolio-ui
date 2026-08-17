@@ -12,6 +12,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { cn } from "@/lib/utils";
 
 interface NavItem {
@@ -39,7 +40,7 @@ const DesktopNavigation = ({ items }: DesktopNavigationProps) => {
                       <span
                         className={cn(
                           navigationMenuTriggerStyle(),
-                          "bg-secondary font-mono text-muted-foreground cursor-not-allowed opacity-50"
+                          "bg-secondary font-mono text-(--pinned-muted-foreground) cursor-not-allowed opacity-50"
                         )}
                       >
                         {item.label}
@@ -55,7 +56,7 @@ const DesktopNavigation = ({ items }: DesktopNavigationProps) => {
                       to={item.href}
                       className={cn(
                         navigationMenuTriggerStyle(),
-                        "bg-secondary font-mono focus:bg-secondary focus:text-foreground, hover:bg-primary hover:text-background hover:font-bold"
+                        "bg-secondary font-mono text-(--pinned-foreground) focus:bg-secondary focus:text-(--pinned-foreground), hover:bg-primary hover:text-(--pinned-background) hover:font-bold"
                       )}
                     >
                       {item.label}
@@ -67,7 +68,9 @@ const DesktopNavigation = ({ items }: DesktopNavigationProps) => {
           </NavigationMenuList>
         </NavigationMenu>
       </TooltipProvider>
-      <div className="flex-1" />
+      <div className="flex-1 flex justify-end">
+        <ThemeToggle />
+      </div>
     </div>
   );
 };

@@ -1,14 +1,17 @@
 import type { ProjectView } from "@/model/view/portfolio";
 
-export const SPOTLIGHT_PROJECT: ProjectView = {
-  id: "three-beasts",
-  name: "The Three Beasts",
-  description:
-    "A daily sports trivia game, Wordle-style: you're given a hint and have to guess the year behind it. Runs across baseball, football, basketball, soccer, and NCAA variants, each with its own color-coded identity, tracks your daily streak, and turns your results into shareable, chart-backed stats.",
-  techStack: ["React", "TypeScript", "Vite", "Tailwind", "Motion", "Victory"],
-  image: "https://placehold.co/1200x400?text=The+Three+Beasts",
-  liveUrl: "https://three-beasts.com",
-};
+export const SPOTLIGHT_PROJECTS: ProjectView[] = [
+  {
+    id: "three-beasts",
+    name: "The Three Beasts",
+    description:
+      "A daily sports trivia game, Wordle-style: Every day you're given three puzzles and have to guess the year behind each. Runs across baseball, football, basketball, soccer, and NCAA, so there's something for everyone.\n\nCaptures shareable, global results each day. Compete with your friends!",
+    techStack: [],
+    image: "/img/three-beasts.png",
+    liveUrl: "https://three-beasts.com",
+    githubUrl: "https://github.com/ethan-fox/three-beasts-web"
+  },
+];
 
 export const FEATURED_REPOS: ProjectView[] = [
   {
@@ -64,7 +67,7 @@ export const SITE_REPOS: ProjectView[] = [
     id: "site-repo-frontend",
     name: "portfolio-ui",
     description:
-      "The frontend you're looking at right now. This is a React/Vite site styled with Tailwind and ShadCN/Radix components. Build pipeline does XYZ",
+      "The frontend you're using right now.", 
     techStack: ["React", "TypeScript", "Vite", "Tailwind", "Radix UI"],
     image: "/img/react.png",
     githubUrl: "https://github.com/ethan-fox/portfolio-ui",
@@ -73,7 +76,7 @@ export const SITE_REPOS: ProjectView[] = [
     id: "site-repo-backend",
     name: "portfolio-backend",
     description:
-      "My global backend for all of my side projects. This serves the content which powers my website's home page, as well as a REST API for my daily sports trivia game \"The Three Beasts\" - check it out below! Data is managed in Postgres with Alembic for managing migrations. My CI pipeline deploys to Cloud Run as a Docker image on every tagged release.",
+      "The global backend for all of my side projects. This serves the content which powers my website's home page, as well as the REST API for my daily sports trivia game \"The Three Beasts\" - check it out below! Data is managed in Postgres with Alembic for migrations. The CI pipeline deploys to Cloud Run as a Docker image on every tagged release.",
     techStack: ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy", "Docker"],
     image: "/img/python.png",
     githubUrl: "https://github.com/ethan-fox/portfolio-backend",
@@ -82,7 +85,7 @@ export const SITE_REPOS: ProjectView[] = [
     id: "site-repo-infra",
     name: "portfolio-infra",
     description:
-      "OpenTofu (Terraform) manages my entire infrastructure on GCP. Cloud Run for the backend, GCS static hosting for this site and `three-beasts.com`, a global HTTPS load balancer with managed SSL and CDN routing both domains, Secret Manager for credentials, and a dedicated CI service account.",
+      "OpenTofu (Terraform) manages my entire infrastructure on GCP. Cloud Run for the backend, GCS static hosting for each of my websites, plus a global HTTPS load balancer with managed SSL and CDN routing. Secrets Manager for credentials, and a dedicated service account to manage my CI/CD on Github Actions..",
     techStack: ["OpenTofu", "Terraform", "Google Cloud", "GitHub Actions"],
     image: "https://placehold.co/600x400?text=portfolio-infra",
     githubUrl: "https://github.com/ethan-fox/portfolio-infra",

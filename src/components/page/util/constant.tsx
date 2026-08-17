@@ -33,14 +33,15 @@ export const DEFAULT_SECTION_STYLE: SectionStyleConfig = baseCardStyle()
   .withMarkdown(markdownComponents.prose)
   .build();
 
-export const PORTFOLIO_TAGLINE = `I built & designed this website entirely myself. The full stack is composed of a React frontend and FastAPI backend, deployed in Google Cloud and managed by OpenTofu. My source code can be found on Github in the following repos:`;
+export const PORTFOLIO_TAGLINE = `I built & designed this website entirely myself, with AI purely as a tool for code scaffolding. The full stack is composed of a React frontend and FastAPI backend, deployed in Google Cloud and managed by OpenTofu. My source code can be found on Github, partitioned in the following repos:`;
+
+export const PORTFOLIO_PROSE_CLASSNAME =
+  'text-md leading-relaxed text-foreground mb-4 text-left desktop:text-center';
 
 export const PORTFOLIO_INTRO_STYLE: SectionStyleConfig = baseCardStyle()
   .withMarkdown({
     p: ({ children }: { children?: React.ReactNode }) => (
-      <p className="text-md leading-relaxed text-foreground mb-4 text-left desktop:text-center">
-        {children}
-      </p>
+      <p className={PORTFOLIO_PROSE_CLASSNAME}>{children}</p>
     ),
   })
   .build();
