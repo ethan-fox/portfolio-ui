@@ -33,7 +33,7 @@ const AboutMeText = ({ content }: AboutMeTextProps) => {
           <li className="text-base text-foreground">{children}</li>
         ),
         a: ({ children, href }) => isInternalLink(href) ? (
-          <Link to={href} className="text-primary font-bold underline hover:text-foreground">
+          <Link to={href!} className="text-primary font-bold underline hover:text-foreground">
             {children}
           </Link>
         ) : (
