@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Markdown from 'react-markdown';
 
 interface AboutMeTextProps {
@@ -5,6 +6,8 @@ interface AboutMeTextProps {
 }
 
 const AboutMeText = ({ content }: AboutMeTextProps) => {
+  const isInternalLink = (href?: string) => href?.startsWith('/') || href?.startsWith('#');
+
   return (
     <Markdown
       components={{
@@ -29,7 +32,11 @@ const AboutMeText = ({ content }: AboutMeTextProps) => {
         li: ({ children }) => (
           <li className="text-base text-foreground">{children}</li>
         ),
-        a: ({ children, href }) => (
+        a: ({ children, href }) => isInternalLink(href) ? (
+          <Link to={href} className="text-primary font-bold underline hover:text-foreground">
+            {children}
+          </Link>
+        ) : (
           <a
             href={href}
             className="text-primary font-bold underline hover:text-foreground"

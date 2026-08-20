@@ -96,7 +96,7 @@ const PortfolioStack = ({ projects }: PortfolioStackProps) => {
     </div>
 
     {/* Desktop: full always-expanded 2-column layout */}
-    <div className="hidden desktop:grid desktop:grid-cols-[10.8rem_1fr] desktop:items-start desktop:gap-x-6 desktop:gap-y-6">
+    <div className="hidden desktop:grid desktop:grid-cols-[10.8rem_1fr] desktop:items-start desktop:gap-x-6 desktop:gap-y-6 desktop:mx-[clamp(0rem,10vw,8rem)]">
       {projects.map((project, index) => (
         <Fragment key={project.id}>
           {index > 0 && <Separator className="col-span-2" />}

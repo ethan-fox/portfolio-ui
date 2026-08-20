@@ -64,7 +64,7 @@ export const SITE_REPOS: ProjectView[] = [
     id: "site-repo-backend",
     name: "portfolio-backend",
     description:
-      "The global backend for all of my side projects. This serves the content which powers my website's home page, as well as the REST API for my daily sports trivia game \"The Three Beasts\" - check it out below! Data is managed in Postgres with Alembic for migrations. The CI pipeline deploys to Cloud Run as a Docker image on every tagged release.",
+      "The global backend for all of my side projects. This serves my Resume content on the Home page, as well my daily sports trivia game \"The Three Beasts\" - check it out below! Data is managed in Postgres with Alembic for migrations. The CI pipeline deploys to Cloud Run as a Docker image on every tagged release.",
     techStack: ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy", "Docker"],
     image: "/img/python.png",
     githubUrl: "https://github.com/ethan-fox/portfolio-backend",
