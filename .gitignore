@@ -27,3 +27,4 @@ CLAUDE.md
 *.mcp.json
 
 .env*
+!.env.example

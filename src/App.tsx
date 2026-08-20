@@ -6,14 +6,15 @@ import HomeBanner from "@/components/domain/HomeBanner";
 import NavigationTray from "@/components/domain/NavigationTray/NavigationTray";
 
 const HomePage = lazy(() => import("@/components/page/HomePage"));
+const PortfolioPage = lazy(() => import("@/components/page/PortfolioPage"));
 const PrivacyPage = lazy(() => import("@/components/page/PrivacyPage"));
 
 function App() {
   const navItems = [
     { label: "Home", href: "/" },
-    { label: "Portfolio", href: "/portfolio", disabled: true },
-    { label: "Games", href: "/games", disabled: true },
-    { label: "Privacy", href: "/privacy" },
+    { label: "Portfolio", href: "/portfolio" },
+    { label: "Blog", href: "/blog", disabled: true },
+    // { label: "Privacy", href: "/privacy" }, // hidden for now — tied to old Google Auth flow, not currently in use
   ];
 
   return (
@@ -25,6 +26,7 @@ function App() {
         <Suspense fallback={<div className="flex justify-center items-center min-h-[clamp(10rem,50vh,25rem)]">Loading...</div>}>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/portfolio" element={<PortfolioPage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
           </Routes>
         </Suspense>

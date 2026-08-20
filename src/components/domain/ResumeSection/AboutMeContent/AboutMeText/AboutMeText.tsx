@@ -29,6 +29,16 @@ const AboutMeText = ({ content }: AboutMeTextProps) => {
         li: ({ children }) => (
           <li className="text-base text-foreground">{children}</li>
         ),
+        a: ({ children, href }) => (
+          <a
+            href={href}
+            className="text-primary font-bold underline hover:text-foreground"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {children}
+          </a>
+        ),
       }}
     >
       {content}

@@ -4,6 +4,14 @@ import ExperienceContent from '@/components/domain/ResumeSection/ExperienceConte
 import AboutMeContent from '@/components/domain/ResumeSection/AboutMeContent/AboutMeContent';
 import ExpertiseContent from '@/components/domain/ResumeSection/ExpertiseContent/ExpertiseContent';
 
+export const ABOUT_ME_TITLE = 'About Me';
+
+export const ABOUT_ME_CONTENT = `My name is Ethan and I've been a hobby programmer since I was 15 years old.
+
+I love building things with code. The website you're on right now is a labor of love and the culmination of years of accumulated knowledge.
+
+Check out my [Portfolio](https://ethan-builds.com/portfolio) for a small showcase of my work. For inquiries (or just to say hi!) feel free to drop me a note at [ethan@ethan-builds.com](mailto:ethan@ethan-builds.com).`; 
+
 export const SECTION_STYLES: Record<string, SectionStyleConfig> = {
   'About Me': {
     ...baseCardStyle().build(),
@@ -31,4 +39,17 @@ export const SECTION_STYLES: Record<string, SectionStyleConfig> = {
 export const DEFAULT_SECTION_STYLE: SectionStyleConfig = baseCardStyle()
   .content('prose dark:prose-invert max-w-none')
   .withMarkdown(markdownComponents.prose)
+  .build();
+
+export const PORTFOLIO_TAGLINE = `I built & designed this web ecosystem entirely myself, with AI as a partner for code generation. The full stack is composed of a React frontend and FastAPI backend, deployed in Google Cloud and managed by OpenTofu. My source code can be found on Github, partitioned in the following repos:`;
+
+export const PORTFOLIO_PROSE_CLASSNAME =
+  'text-md leading-relaxed text-foreground mb-4 text-left desktop:text-center';
+
+export const PORTFOLIO_INTRO_STYLE: SectionStyleConfig = baseCardStyle()
+  .withMarkdown({
+    p: ({ children }: { children?: React.ReactNode }) => (
+      <p className={PORTFOLIO_PROSE_CLASSNAME}>{children}</p>
+    ),
+  })
   .build();

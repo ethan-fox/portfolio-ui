@@ -11,8 +11,12 @@ const ExperiencePositionInfo = ({ parsedExperience }: ExperiencePositionInfo) =>
       <div className="flex flex-col items-start gap-2 w-full md:w-auto">
         {parsedExperience.positions.map((position, index) => (
           <div key={index} className="flex gap-1">
-            <StyledBadge variant="default">{position.title}</StyledBadge>
-            <StyledBadge variant="secondary">{position.dateRange}</StyledBadge>
+            <StyledBadge variant="default" className="text-(--pinned-primary-foreground)">
+              {position.title}
+            </StyledBadge>
+            <StyledBadge variant="secondary" className="text-(--pinned-foreground)">
+              {position.dateRange}
+            </StyledBadge>
           </div>
         ))}
       </div>

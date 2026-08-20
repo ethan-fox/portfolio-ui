@@ -4,6 +4,8 @@ import { parseByPattern } from "@/util/resumeSectionParser";
 import {
   SECTION_STYLES,
   DEFAULT_SECTION_STYLE,
+  ABOUT_ME_TITLE,
+  ABOUT_ME_CONTENT,
 } from "@/components/page/util/constant";
 import ResumeSection from "../domain/ResumeSection/ResumeSection";
 import type { ParsedSection } from "@/model/component/ParsedSection";
@@ -39,6 +41,12 @@ const HomePage = () => {
 
   return (
     <PageContainer>
+      <ResumeSection
+        title={ABOUT_ME_TITLE}
+        content={ABOUT_ME_CONTENT}
+        styleConfig={SECTION_STYLES[ABOUT_ME_TITLE]}
+      />
+
       {isLoading && <p className="text-muted-foreground">Loading...</p>}
 
       {error && <p className="text-destructive">{error}</p>}

@@ -8,6 +8,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { Menu, ArrowRightToLine } from "lucide-react";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 interface NavItem {
   label: string;
@@ -31,7 +32,7 @@ const MobileNavigation = ({
       <SheetTrigger asChild>
         <div className="flex items-center justify-center gap-2 w-full py-6">
           <Menu className="h-5 w-5" />
-          <span className="text-sm font-mono">Menu</span>
+          <span className="text-sm font-mono text-foreground">More</span>
         </div>
       </SheetTrigger>
       <SheetPortal>
@@ -65,13 +66,17 @@ const MobileNavigation = ({
                       key={item.href}
                       to={item.href}
                       onClick={() => onOpenChange(false)}
-                      className="text-lg font-mono hover:text-accent-foreground hover:bg-accent px-4 py-2 rounded-md transition-colors"
+                      className="text-lg font-mono text-foreground hover:text-accent-foreground hover:bg-accent px-4 py-2 rounded-md transition-colors"
                     >
                       {item.label}
                     </Link>
                   )
                 ))}
               </nav>
+            </div>
+            <div className="p-4 border-t flex items-center justify-between">
+              <span className="text-sm text-muted-foreground">Theme</span>
+              <ThemeToggle />
             </div>
           </SheetContent>
         </SheetPortal>
