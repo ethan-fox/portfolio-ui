@@ -17,7 +17,7 @@ export const SPOTLIGHT_PROJECTS: ProjectView[] = [
     description:
       "A proof of concept for Oban-py with FastAPI, applied to the domain of a restaurant kitchen. Orders come in over REST, each meal runs as an independent async job, and workers process the queue in parallel. Deployable to minikube with Oban Web for watching job execution in real time.",
     techStack: ["Python", "FastAPI", "PostgreSQL", "Docker"],
-    image: "/img/git.png",
+    image: "/img/oban.png",
     githubUrl: "https://github.com/ethan-fox/oban-eats",
   },
   {
@@ -35,7 +35,7 @@ export const SPOTLIGHT_PROJECTS: ProjectView[] = [
     description:
       "A hands-on sandbox for exploring KEDA autoscaling in Kubernetes. A mock metrics API and Hello World app lets you trigger, observe, and debug event-driven scaling behavior via minikube.",
     techStack: ["Python", "Kubernetes", "KEDA", "Helm"],
-    image: "/img/git.png",
+    image: "/img/k8s.png",
     githubUrl: "https://github.com/ethan-fox/keda-playground",
   },
   {
@@ -44,7 +44,7 @@ export const SPOTLIGHT_PROJECTS: ProjectView[] = [
     description:
       "A small Spring Boot app for playing around with Dependency Injection patterns.",
     techStack: ["Java", "Spring"],
-    image: "/img/git.png",
+    image: "/img/spring.png",
     githubUrl: "https://github.com/ethan-fox/spring-di-demo",
   },
 ];
