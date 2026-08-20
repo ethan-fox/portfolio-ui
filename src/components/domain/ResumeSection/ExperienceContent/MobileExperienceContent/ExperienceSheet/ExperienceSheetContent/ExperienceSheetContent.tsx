@@ -43,7 +43,7 @@ const ExperienceSheetContent = ({
             a: ({ children, href }) => (
               <a
                 href={href}
-                className="text-primary font-bold underline hover:text-white"
+                className="text-primary font-bold underline hover:text-foreground"
                 target="_blank"
                 rel="noopener noreferrer"
               >

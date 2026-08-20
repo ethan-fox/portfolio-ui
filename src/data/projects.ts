@@ -11,53 +11,41 @@ export const SPOTLIGHT_PROJECTS: ProjectView[] = [
     liveUrl: "https://three-beasts.com",
     githubUrl: "https://github.com/ethan-fox/three-beasts-web"
   },
-];
-
-export const FEATURED_REPOS: ProjectView[] = [
   {
-    id: "featured-repo-1",
-    name: "Placeholder Project One",
+    id: "oban-eats",
+    name: "Oban Eats",
     description:
-      "Placeholder flavor text for a featured GitHub repo. Replace with a real project and description.",
-    techStack: ["Python", "PostgreSQL"],
-    image: "https://placehold.co/600x400?text=Project+One",
-    githubUrl: "https://github.com/ethan-fox/placeholder-repo-1",
+      "A proof of concept for Oban-py with FastAPI, applied to the domain of a restaurant kitchen. Orders come in over REST, each meal runs as an independent async job, and workers process the queue in parallel. Deployable to minikube with Oban Web for watching job execution in real time.",
+    techStack: ["Python", "FastAPI", "PostgreSQL", "Docker"],
+    image: "/img/git.png",
+    githubUrl: "https://github.com/ethan-fox/oban-eats",
   },
   {
-    id: "featured-repo-2",
-    name: "Placeholder Project Two",
+    id: "system-prompt",
+    name: "system-prompt",
     description:
-      "Placeholder flavor text for another featured GitHub repo. Replace with a real project and description.",
+      "The global system prompt I use to guide LLMs across all of my personal projects. Version-controlled and symlinked into place so it stays portable across machines. A small peek into how I like to structure AI-assisted development.",
+    techStack: ["AI"],
+    image: "/img/git.png",
+    githubUrl: "https://github.com/ethan-fox/system-prompt",
+  },
+  {
+    id: "keda-playground",
+    name: "KEDA Playground",
+    description:
+      "A hands-on sandbox for exploring KEDA autoscaling in Kubernetes. A mock metrics API and Hello World app lets you trigger, observe, and debug event-driven scaling behavior via minikube.",
+    techStack: ["Python", "Kubernetes", "KEDA", "Helm"],
+    image: "/img/git.png",
+    githubUrl: "https://github.com/ethan-fox/keda-playground",
+  },
+  {
+    id: "spring-di-demo",
+    name: "Spring DI Demo",
+    description:
+      "A small Spring Boot app for playing around with Dependency Injection patterns.",
     techStack: ["Java", "Spring"],
-    image: "https://placehold.co/600x400?text=Project+Two",
-    githubUrl: "https://github.com/ethan-fox/placeholder-repo-2",
-  },
-  {
-    id: "featured-repo-3",
-    name: "Placeholder Project Three",
-    description:
-      "Placeholder flavor text for another featured GitHub repo. Replace with a real project and description.",
-    techStack: ["Go", "Redis"],
-    image: "https://placehold.co/600x400?text=Project+Three",
-    githubUrl: "https://github.com/ethan-fox/placeholder-repo-3",
-  },
-  {
-    id: "featured-repo-4",
-    name: "Placeholder Project Four",
-    description:
-      "Placeholder flavor text for another featured GitHub repo. Replace with a real project and description.",
-    techStack: ["Rust", "WASM"],
-    image: "https://placehold.co/600x400?text=Project+Four",
-    githubUrl: "https://github.com/ethan-fox/placeholder-repo-4",
-  },
-  {
-    id: "featured-repo-5",
-    name: "Placeholder Project Five",
-    description:
-      "Placeholder flavor text for another featured GitHub repo. Replace with a real project and description.",
-    techStack: ["Swift", "iOS"],
-    image: "https://placehold.co/600x400?text=Project+Five",
-    githubUrl: "https://github.com/ethan-fox/placeholder-repo-5",
+    image: "/img/git.png",
+    githubUrl: "https://github.com/ethan-fox/spring-di-demo",
   },
 ];
 
@@ -85,9 +73,9 @@ export const SITE_REPOS: ProjectView[] = [
     id: "site-repo-infra",
     name: "portfolio-infra",
     description:
-      "OpenTofu (Terraform) manages my entire infrastructure on GCP. Cloud Run for the backend, GCS static hosting for each of my websites, plus a global HTTPS load balancer with managed SSL and CDN routing. Secrets Manager for credentials, and a dedicated service account to manage my CI/CD on Github Actions..",
+      "OpenTofu (Terraform) manages my entire infrastructure on GCP. Cloud Run for the backend, GCS static hosting for each of my websites, plus a global HTTPS load balancer with managed SSL and CDN routing. Secrets Manager for credentials, and a dedicated service account to manage my CI/CD on Github Actions.",
     techStack: ["OpenTofu", "Terraform", "Google Cloud", "GitHub Actions"],
-    image: "https://placehold.co/600x400?text=portfolio-infra",
+    image: "/img/tofu.png",
     githubUrl: "https://github.com/ethan-fox/portfolio-infra",
   },
 ];

@@ -54,9 +54,10 @@ const DesktopNavigation = ({ items }: DesktopNavigationProps) => {
                   <NavigationMenuLink asChild>
                     <Link
                       to={item.href}
+                      onClick={(e) => e.currentTarget.blur()}
                       className={cn(
                         navigationMenuTriggerStyle(),
-                        "bg-secondary font-mono text-(--pinned-foreground) focus:bg-secondary focus:text-(--pinned-foreground), hover:bg-primary hover:text-(--pinned-background) hover:font-bold"
+                        "bg-secondary font-mono text-(--pinned-foreground) focus:bg-secondary focus:text-(--pinned-foreground) hover:bg-primary hover:text-(--pinned-background) hover:font-bold"
                       )}
                     >
                       {item.label}

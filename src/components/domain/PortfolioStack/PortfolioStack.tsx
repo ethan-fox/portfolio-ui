@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useRef } from "react";
 import { Github, ExternalLink } from "lucide-react";
 import {
   Accordion,
@@ -14,13 +14,32 @@ interface PortfolioStackProps {
   projects: ProjectView[];
 }
 
-const PortfolioStack = ({ projects }: PortfolioStackProps) => (
-  <>
+const PortfolioStack = ({ projects }: PortfolioStackProps) => {
+  const itemRefs = useRef<Record<string, HTMLDivElement | null>>({});
+
+  const handleAccordionChange = (value: string | string[]) => {
+    const values = Array.isArray(value) ? value : [value];
+    const lastOpenedValue = values[values.length - 1];
+    const itemElement = lastOpenedValue ? itemRefs.current[lastOpenedValue] : null;
+
+    if (itemElement) {
+      setTimeout(() => {
+        itemElement.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 300);
+    }
+  };
+
+  return (
+    <>
     {/* Mobile: compact tap-to-expand rows */}
     <div className="touch:block desktop:hidden px-4">
-      <Accordion type="multiple">
+      <Accordion type="multiple" onValueChange={handleAccordionChange}>
         {projects.map((project) => (
-          <AccordionItem key={project.id} value={project.id}>
+          <AccordionItem
+            key={project.id}
+            value={project.id}
+            ref={(el) => { itemRefs.current[project.id] = el; }}
+          >
             <AccordionTrigger className="items-center hover:no-underline">
               <div className="flex flex-row items-center gap-3 min-w-0">
                 <img
@@ -52,19 +71,19 @@ const PortfolioStack = ({ projects }: PortfolioStackProps) => (
               </p>
               {(project.liveUrl || project.githubUrl) && (
                 <div className="flex justify-end gap-2">
-                  {project.githubUrl && (
-                    <Button asChild variant="outline" size="sm">
-                      <a href={project.githubUrl} target="_blank" rel="noreferrer">
-                        <Github />
-                        GitHub
-                      </a>
-                    </Button>
-                  )}
                   {project.liveUrl && (
                     <Button asChild size="sm">
                       <a href={project.liveUrl} target="_blank" rel="noreferrer">
                         Visit Site
                         <ExternalLink />
+                      </a>
+                    </Button>
+                  )}
+                  {project.githubUrl && (
+                    <Button asChild variant="outline" size="sm">
+                      <a href={project.githubUrl} target="_blank" rel="noreferrer">
+                        <Github />
+                        GitHub
                       </a>
                     </Button>
                   )}
@@ -105,19 +124,19 @@ const PortfolioStack = ({ projects }: PortfolioStackProps) => (
               </div>
               {(project.liveUrl || project.githubUrl) && (
                 <div className="flex gap-2">
-                  {project.githubUrl && (
-                    <Button asChild variant="outline" size="sm">
-                      <a href={project.githubUrl} target="_blank" rel="noreferrer">
-                        <Github />
-                        GitHub
-                      </a>
-                    </Button>
-                  )}
                   {project.liveUrl && (
                     <Button asChild size="sm">
                       <a href={project.liveUrl} target="_blank" rel="noreferrer">
                         Visit Site
                         <ExternalLink />
+                      </a>
+                    </Button>
+                  )}
+                  {project.githubUrl && (
+                    <Button asChild variant="outline" size="sm">
+                      <a href={project.githubUrl} target="_blank" rel="noreferrer">
+                        <Github />
+                        GitHub
                       </a>
                     </Button>
                   )}
@@ -129,6 +148,7 @@ const PortfolioStack = ({ projects }: PortfolioStackProps) => (
       ))}
     </div>
   </>
-);
+  );
+};
 
 export default PortfolioStack;
