@@ -10,7 +10,7 @@ export const ABOUT_ME_CONTENT = `My name is Ethan and I've been a hobby programm
 
 I love building things with code. The website you're on right now is a labor of love and the culmination of years of accumulated knowledge.
 
-Check out my [Portfolio](/portfolio) for a small showcase of my work. For inquiries (or just to say hi!) feel free to drop me a note at [ethan@ethan-builds.com](mailto:ethan@ethan-builds.com).`; 
+Head over to my [Portfolio](/portfolio) to check out my side projects. For inquiries (or just to say hi!) please reach out to me at [ethan@ethan-builds.com](mailto:ethan@ethan-builds.com).`; 
 
 export const SECTION_STYLES: Record<string, SectionStyleConfig> = {
   'About Me': {
