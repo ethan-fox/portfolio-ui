@@ -4,9 +4,11 @@ import { parseByPattern } from "@/util/resumeSectionParser";
 import {
   SECTION_STYLES,
   DEFAULT_SECTION_STYLE,
-  ABOUT_ME_TITLE,
-  ABOUT_ME_CONTENT,
+  ABOUT_ME_TAGLINE,
+  QUICK_HITS_TITLE,
+  QUICK_HITS_CONTENT,
 } from "@/components/page/util/constant";
+import AboutMeContent from "@/components/domain/ResumeSection/AboutMeContent/AboutMeContent";
 import ResumeSection from "../domain/ResumeSection/ResumeSection";
 import type { ParsedSection } from "@/model/component/ParsedSection";
 import PageContainer from "@/components/custom/PageContainer";
@@ -41,10 +43,17 @@ const HomePage = () => {
 
   return (
     <PageContainer>
+      <AboutMeContent
+        tagline={ABOUT_ME_TAGLINE}
+        profilePhotoSrc="/profile.jpg"
+        profilePhotoAlt="Profile photo"
+        profilePhotoFallback="EF"
+      />
+
       <ResumeSection
-        title={ABOUT_ME_TITLE}
-        content={ABOUT_ME_CONTENT}
-        styleConfig={SECTION_STYLES[ABOUT_ME_TITLE]}
+        title={QUICK_HITS_TITLE}
+        content={QUICK_HITS_CONTENT}
+        styleConfig={SECTION_STYLES[QUICK_HITS_TITLE]}
       />
 
       {isLoading && <p className="text-muted-foreground">Loading...</p>}

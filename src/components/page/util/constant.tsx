@@ -1,28 +1,25 @@
 import type { SectionStyleConfig } from '@/model/component/ResumeSection';
 import { baseCardStyle, markdownComponents } from '@/components/page/util/styleConfigFactory';
 import ExperienceContent from '@/components/domain/ResumeSection/ExperienceContent/ExperienceContent';
-import AboutMeContent from '@/components/domain/ResumeSection/AboutMeContent/AboutMeContent';
+import QuickHits from '@/components/domain/ResumeSection/AboutMeContent/QuickHits/QuickHits';
 import ExpertiseContent from '@/components/domain/ResumeSection/ExpertiseContent/ExpertiseContent';
 
-export const ABOUT_ME_TITLE = 'About Me';
+export const RESUME_PDF_PATH = '/Ethan_Fox_Resume.pdf';
 
-export const ABOUT_ME_CONTENT = `My name is Ethan and I've been a hobby programmer since I was 15 years old.
+export const ABOUT_ME_TAGLINE = "My name is Ethan and I've been a hobby programmer since I was 15 years old. I love building things with code, and I'm glad you could stop by!";
 
-I love building things with code. The website you're on right now is a labor of love and the culmination of years of accumulated knowledge.
+export const QUICK_HITS_TITLE = 'Quick Hits';
 
-Check out my [Portfolio](/portfolio) for a small showcase of my work. For inquiries (or just to say hi!) feel free to drop me a note at [ethan@ethan-builds.com](mailto:ethan@ethan-builds.com).`; 
+export const QUICK_HITS_CONTENT = [
+  `For a downloadable copy of my resume, [click here](${RESUME_PDF_PATH}).`,
+  'For inquiries (or just to say hi!) feel free to drop me a note at [ethan@ethan-builds.com](mailto:ethan@ethan-builds.com).',
+  'Check out my [Portfolio](/portfolio) for a showcase of my work.',
+].join('\n');
 
 export const SECTION_STYLES: Record<string, SectionStyleConfig> = {
-  'About Me': {
+  [QUICK_HITS_TITLE]: {
     ...baseCardStyle().build(),
-    customRenderer: (content: string) => (
-      <AboutMeContent
-        content={content}
-        profilePhotoSrc="/profile.jpg"
-        profilePhotoAlt="Profile photo"
-        profilePhotoFallback="EF"
-      />
-    ),
+    customRenderer: (content: string) => <QuickHits content={content} />,
   },
 
   'Expertise': {
